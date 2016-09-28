@@ -1,0 +1,52 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> 学习Gulp的一些收获 · Mrwaite`s Blog</title><meta name="description" content="学习Gulp的一些收获 - Mrwaite"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="short icon" href="/favicon.png"><link rel="stylesheet" href="/css/apollo.css"><link rel="search" type="application/opensearchdescription+xml" href="http://code.mrwaite.cn/atom.xml" title="Mrwaite`s Blog"></head><body><div class="wrap"><header><a href="/" class="logo-link"><img src="/favicon.png"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">BLOG</a></li><li class="nav-list-item"><a href="/archives/" target="_self" class="nav-list-link">ARCHIVE</a></li><li class="nav-list-item"><a href="http://weibo.com/sunchongsheng" target="_blank" class="nav-list-link">WEIBO</a></li><li class="nav-list-item"><a href="https://github.com/pinggod" target="_blank" class="nav-list-link">GITHUB</a></li><li class="nav-list-item"><a href="/atom.xml" target="_self" class="nav-list-link">RSS</a></li></ul></header><section class="container"><div class="post"><article class="post-block"><h1 class="post-title">学习Gulp的一些收获</h1><div class="post-info">2016年9月25日</div><div class="post-content"><div class="note info"><h2 id="ulp,Grunt,Webpack">Gulp,Grunt,Webpack</h2></div>
+
+<p>之前一直对于<code>Grunt</code>,<code>Gulp</code>,<code>Webpack</code>它们之间到底是什么关系<br>一直迷惑不已,最近对于<code>Gulp</code>的学习中,算是对于它们有了初步的了解.   </p>
+<p>其实<code>Grunt</code>和<code>Gulp</code>,与<code>webpack</code>不是一回事!</p>
+<p><code>Gulp</code>应该和<code>Grunt</code>相互比较.它们都是一种工具能够优化前端的工作流程.像是<code>sass</code>的编译,自动添加css前缀,压缩css,js的校验合并压缩,监视功能.使用<code>Grunt</code>/<code>Gulp</code>,然后配置需要的插件,就可以让你脱离繁琐的手工操作,让这些自动化工具帮你完成.</p>
+<a id="more"></a>
+<p>而<code>webpack</code>是一种JS模块化的方案,和它功能类似有<code>browserify</code>,<code>seajs</code>,<code>requirejs</code>.虽然他们都是解决JS模块化的方案,但是他们之间还是有区别的.</p>
+<ul>
+<li><code>seajs</code>/<code>requirejs</code> : 是一种在线’编译’的的模块方案.怎么说就是,在页面上加载了AMD或者CMD解释器,然后浏览器可以通过这样的一个解释器,知道上面两个模块化规范的规则,就能认识<code>define</code>,<code>exports</code>,<code>module</code>等.</li>
+<li><code>webpack</code>/<code>browserify</code> : 这是一个’预编译’模块的方案,它们不需要在浏览器当中加载,你只需要在本地写好符合模块化规范n的JS文件,然后通过相应的编译工具,就能编译成浏览器能识别的JS文件.</li>
+</ul>
+<p>当然<code>gulp</code>等自动化工具也能通过插件,使用像是<code>webpack</code>这样的模块化方案.</p>
+<p>接下来主要讲讲我醉经了解的自动化工具<code>Gulp</code></p>
+<div class="note info"><h2 id="预处理与后处理器">预处理与后处理器</h2></div>
+
+<h3 id="预处理器"><a href="#预处理器" class="headerlink" title="预处理器"></a>预处理器</h3><p>说到预处理器,<code>sass</code>,<code>less</code>,<code>stylus</code>都是目前比较主流的预处理器.用过像是<code>sass</code>这样的预处理器都知道,他们会有自己的一套语法,像是变量,函数,嵌套,混合器,继承等,然后再编译成浏览器能识别的css代码.这样,编译前和编译后是完全不同的语言</p>
+<h4 id="实现原理"><a href="#实现原理" class="headerlink" title="实现原理"></a>实现原理</h4><ol>
+<li>首次取到预处理器的源代码的分析树</li>
+<li>将有动态生成的,比如一些变量和函数的分析树,转化成静态分析树</li>
+<li>将静态分析树转化为<code>css</code>的分析树</li>
+<li>将<code>css</code>分析树转化为css代码</li>
+</ol>
+<h3 id="后处理器"><a href="#后处理器" class="headerlink" title="后处理器"></a>后处理器</h3><p>而css后处理器是对css代码进行处理,最终生成的还是css代码,编译前的和编译后的代码都是css.</p>
+<h4 id="实现原理-1"><a href="#实现原理-1" class="headerlink" title="实现原理"></a>实现原理</h4><ol>
+<li>先将源代码做css解析,获得分析树</li>
+<li>对于得到的cs分析树,做后处理</li>
+<li>将后处理好的css分析树,转换成css代码</li>
+</ol>
+<h3 id="比较"><a href="#比较" class="headerlink" title="比较"></a>比较</h3><p>我感觉css预处理器可以算是一个新的语言新的语法,这样会增加我们的学习成本与使用门槛,而且可能会因为预处理器跟不上留恋器或者其他的版本的更迭而出现问题.而后处理器原先就是css语法,几乎是0门槛,它对于css分析树的处理是依据<code>can i use</code>网站实时的更新.但是css预处理器的强大之处在于逻辑能力的处理能力强,灵活,改善项目结构,而后处理器在这方便就显得拙荆见肘了.</p>
+<h3 id="CSSGrace"><a href="#CSSGrace" class="headerlink" title="CSSGrace"></a>CSSGrace</h3><div class="note info"><h2 id="Gulp">Gulp</h2></div>
+
+<p>看网上大家对于<code>Grunt</code>和<code>Gulp</code>的比较,好像<code>Gulp</code>比起<code>Grunt</code>配置更简单而且更容易阅读和维护,<code>Gulp</code>还支持管道处理!so,我就入坑<code>Gulp</code>.</p>
+<p><code>Gulp</code>一般都是配合相应的插件来完成一些具体的任务的.</p>
+<p><code>gulp.task</code>是用来创建任务的,<code>gulp-src</code>是设置需要处理的文件的路径(可以是多文件数组,也可以是正则表达式),<code>gulp-dest</code>是设置生成文件的路径(可以在一个插件结束之后立即保存,之后继续管道到下一个插件处理).</p>
+<p>下面就列举一些常用的插件:</p>
+<h4 id="gulp-ruby-sass-gulp-autoprefixer-gulp-minify-css"><a href="#gulp-ruby-sass-gulp-autoprefixer-gulp-minify-css" class="headerlink" title="gulp-ruby-sass + gulp-autoprefixer + gulp-minify-css"></a>gulp-ruby-sass + gulp-autoprefixer + gulp-minify-css</h4><p>上面这些插件的组合可以实现<code>sass</code>的编译,自动添加前缀,压缩.</p>
+<h5 id="gulp-jshint-gulp-concat-gulp-uglify"><a href="#gulp-jshint-gulp-concat-gulp-uglify" class="headerlink" title="gulp-jshint + gulp-concat + gulp-uglify"></a>gulp-jshint + gulp-concat + gulp-uglify</h5><p>实现js代码的校验,合并和压缩,之前对于gulp-concat的合并有写疑惑?比如有些文件有依赖关系.查资料之后好像可以用webpack插件或者gulp-order来控制顺序之类的.</p>
+<p>还有压缩图片,清除文件,这只默认任务,监听文件,自动刷新页面之类的插件的使用就不做累述了.</p>
+<div class="note info"><h2 id="遇到的问题">遇到的问题</h2></div>
+
+<p>之前参考一篇gulp的教程,上面gulp-sass插件是这么使用的</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">gulp.task(<span class="string">'styles'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> gulp.src(<span class="string">'src/styles/main.scss'</span>)</div><div class="line">    .pipe(sass(&#123; style: <span class="string">'expanded'</span> &#125;))</div><div class="line">    .pipe(autoprefixer(<span class="string">'last 2 version'</span>, <span class="string">'safari 5'</span>, <span class="string">'ie 8'</span>, <span class="string">'ie 9'</span>, <span class="string">'opera 12.1'</span>, <span class="string">'ios 6'</span>, <span class="string">'android 4'</span>))</div><div class="line">    .pipe(gulp.dest(<span class="string">'dist/assets/css'</span>))</div><div class="line">    .pipe(rename(&#123;suffix: <span class="string">'.min'</span>&#125;))</div><div class="line">    .pipe(minifycss())</div><div class="line">    .pipe(gulp.dest(<span class="string">'dist/assets/css'</span>))</div><div class="line">    .pipe(notify(&#123; message: <span class="string">'Styles task complete'</span> &#125;));</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>会报这样的错误:<code>Gulp.js TypeError: glob pattern string required</code></p>
+<p>在stackoverflow上的解答之后才知道gulp-sass的API已经改变的了需要已这样的方式使用此插件:<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">gulp.task(<span class="string">'styles'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> sass(<span class="string">'sass/*.scss'</span>, &#123;</div><div class="line">      style: <span class="string">'XXXXXXX'</span></div><div class="line">    &#125;)</div><div class="line">    .pipe(XXXXXX);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>在使用gulp-jshint插件的时候遇到这样的报错:<code>Gulp Error: Cannot find module &#39;jshint/src/cli&#39;</code>,<br>原因是只是安装了gulp-jshint没有安装jshint,然后<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install --save-dev jshint gulp-jshint</div></pre></td></tr></table></figure></p>
+<div class="note info"><h2 id="最近的感想">最近的感想</h2></div>
+
+<p>最近可能是感觉到了下一个寒假结束之后自己马上就要投投简历,找实习了.前几天又帮一个学长答笔试题:),看到现场来参加笔试的人是如此之多,竞争压力是如此之大(好像是几千人,就招三四十个人..)</p>
+<p>也看到了一些同龄的也在学前端的在校大学生,感觉虽然自己学前端有段时间了,但是现在掌握的东西都是个p!!!!</p>
+<p>就说最近看到的一个三本学校的大四学长的2015总结,上面提到的名词都有:Flex,react,Angular,sass,PHP,Redis,MongoDB,vue…</p>
+<p>还是菜啊,加油吧,自己!</p>
+</div></article></div></section><footer><div class="paginator"><a href="/2016/09/28/hello-world/" class="prev">PREV</a><a href="/2016/08/13/Sass学习/" class="next">NEXT</a></div><div class="copyright"><p>© 2015 - 2016 <a href="http://code.mrwaite.cn">Mrwaite</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/pinggod/hexo-theme-apollo" target="_blank">hexo-theme-apollo</a>.</p></div></footer></div><script async src="//cdn.bootcss.com/mathjax/2.6.1/MathJax.js?config=TeX-MML-AM_CHTML"></script><script>(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;e=o.createElement(i);r=o.getElementsByTagName(i)[0];e.src='//www.google-analytics.com/analytics.js';r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));ga('create',"UA-65933410-1",'auto');ga('send','pageview');</script></body></html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> 读JavaScript语言精粹收获 · Mrwaite`s Blog</title><meta name="description" content="读JavaScript语言精粹收获 - Mrwaite"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="short icon" href="/favicon.png"><link rel="stylesheet" href="/css/apollo.css"><link rel="search" type="application/opensearchdescription+xml" href="http://code.mrwaite.cn/atom.xml" title="Mrwaite`s Blog"></head><body><div class="wrap"><header><a href="/" class="logo-link"><img src="/favicon.png"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">BLOG</a></li><li class="nav-list-item"><a href="/archives/" target="_self" class="nav-list-link">ARCHIVE</a></li><li class="nav-list-item"><a href="http://weibo.com/sunchongsheng" target="_blank" class="nav-list-link">WEIBO</a></li><li class="nav-list-item"><a href="https://github.com/pinggod" target="_blank" class="nav-list-link">GITHUB</a></li><li class="nav-list-item"><a href="/atom.xml" target="_self" class="nav-list-link">RSS</a></li></ul></header><section class="container"><div class="post"><article class="post-block"><h1 class="post-title">读JavaScript语言精粹收获</h1><div class="post-info">2016年8月10日</div><div class="post-content"><div class="note info"><h2 id="前言">前言</h2></div>
+
+<blockquote>
+<p>接触<code>JavaScript</code>也有一段时间了，好早之前就在各方的<code>JavaScript</code>经典书籍推荐上纷纷提到过这本书。其实我也忘了是什么原因导致我好几次刚开始阅读这本书就中断了。这几天我就花了点时间仔细阅读了这本书。并写下这篇博客记录自己的收获，备忘。（按照本书的目录结构整理）  </p>
+</blockquote>
+<div class="note info"><h2 id="第一章：精华">第一章：精华</h2></div>
+
+<blockquote>
+<p>浏览器的<code>API</code>和文档对象模型<code>DOM</code>相当糟糕，它的规范制定的很拙劣并且实现互不一致。</p>
+<p>那些优秀的想法包括：函数， 弱类型， 动态对象和富有表现力的对象字面量表示法。那些糟糕的想法包括给予全局变量的编程模型。</p>
+<p>词法作用域是词法分析的过程中指派的作用域，在词法解析过程中定死。动态作用域在代码运行时定义，非代码解析时。动态不关心哪里声明，关心在哪里调用，和this相似，基于调用栈，词法作用域相反。</p>
+<p><code>JavaScript</code>是一门弱类型语言。<code>JavaScript</code>有非常强大的对象字面量表示法。</p>
+</blockquote>
+<a id="more"></a>
+<div class="note info"><h2 id="第二章：语法">第二章：语法</h2></div>
+
+<blockquote>
+<p>没有用的注释比没有注释更糟糕。/<em> </em>/注释可能会在正则表达式上出错。</p>
+<p>在<code>JavaScript</code>保留字里面有一些本应该被保留而没有被保留的字，包括<code>undefined</code>，<code>NaN</code>和<code>Infinity</code>。</p>
+<p><code>JavaScript</code>只有一种数字类型，它在内部被表示为64位浮点数。整数部分按照54位来算。        </p>
+<p>只有下面被列出来的值被当做假（<code>false</code>）：<code>false</code>，<code>null</code>，<code>undefined</code>，空字符串 ‘ ‘，数字 0， 数字<code>NuN</code>。</p>
+<p><code>typeof</code>运算一个数组或者<code>null</code>，那么结果是<code>&#39;object&#39;</code>。</p>
+<p>定义字面量的时候，属性名可以是标识符或者字符串，对象的属性名是在编译的时候才能知道。</p>
+</blockquote>
+<div class="note info"><h2 id="第三章：对象">第三章：对象</h2></div>
+
+<blockquote>
+<p>数组是对象，函数是对象，正则表达式是对象，对象自然也是对象。属性名可以是包括空字符串在内的任意字符。<code>JavaScript</code>里面标识符包含连接符（-）是不合法的。</p>
+<p>删除对象的属性可能会让来自原型链中的属性透现出来。（暴露出原型的接口）。</p>
+</blockquote>
+<div class="note info"><h2 id="第四章：函数">第四章：函数</h2></div>
+
+<blockquote>
+<p><code>JavaScript</code>设计最出色的地方就是它的函数实现。</p>
+<p>函数的参数将被定义为函数中的变量。每个函数还会接受两个附加的参数：<code>this</code>和<code>arguments</code>。</p>
+<p><code>this</code>有4种调用模式：1.方法调用 2.函数调用模式 3.构造器调用模式 4.<code>apply</code>调用模式</p>
+<p>方法调用模式：<code>this</code>到对象绑定发生在调用的时候。这个‘超级’延迟绑定使得函数可以对<code>this</code>高度的复用。</p>
+<p>函数调用模式：<code>this</code>绑定到全局对象，这是语言设计上的一个错误。<code>this</code>应该绑定到外部函数的<code>this</code>变量。</p>
+<p><code>arguments</code>数组可以访问函数被调用的时候传递给的全部参数，包括那些没有分配给函数声明是定义的形式参数的多余参数。<code>arguments</code>是一个类数组对象。</p>
+<p><code>JavaScript</code>没有提供尾递归优化。尾递归优化是函数返回自身地柜调用的结果，那个调用的过程会被替换成一个循环，显著提高速度。<code>JavaScript</code>深度递归可能会因为堆栈溢出而运行失败。</p>
+</blockquote>
+<h3 id="闭包"><a href="#闭包" class="headerlink" title="闭包"></a>闭包</h3><blockquote>
+<p>(自己总结)闭包的应用场景：1.保护函数内变量安全：迭代器，生成器 2.在内存中维护变量：缓存数据， 柯理化。<code>this</code>指向上一个执行环境。</p>
+<p>在闭包里面方法不是访问该参数的一个副本，它访问的是该参数本身。（执行环境未被销毁）</p>
+</blockquote>
+<h3 id="模块"><a href="#模块" class="headerlink" title="模块"></a>模块</h3><blockquote>
+<p>模块是一个提供接口却隐藏状态与实现的函数或者对象。（存在在执行环境中的私有变量）。</p>
+<p>模块的一般形式是：一个定义了私有变量和函数的函数；利用闭包创建可以访问私有变量的函数的特权函数；最后返回这个特权函数，或者把它们保存到一个可以访问的地方。</p>
+</blockquote>
+<h3 id="级联"><a href="#级联" class="headerlink" title="级联"></a>级联</h3><blockquote>
+<p>在方法的<code>return</code>处返回<code>this</code>而不是<code>undefined</code>。级联技术可以产出极富表现力的接口。</p>
+<p>一个接口没有必要做太多的事。</p>
+</blockquote>
+<div class="note info"><h2 id="第五章：继承（没有看的很明白）">第五章：继承(没有看的很明白)</h2></div>
+
+<h3 id="函数化"><a href="#函数化" class="headerlink" title="函数化"></a>函数化</h3><blockquote>
+<p>继承模式的一个弱点就是没有办法保护隐私。我们有更好的选择就是应用模块模式。</p>
+<p>该函数包括四个步骤：<br>1.创建一个新对象，有很对的方法可以构造一个对象。可以用对象字面量，或者<code>new</code>一个构造器函数，或者使用<code>Object.create</code>方法构造一个已存在函数的实例，或者调用任意一个会返回一个对象的函数。<br>2.有选择的定义私有实例变量和方法。<br>3.给新对象扩充方法。这些对象有特权取访问参数。<br>4.返回那个新对象。</p>
+</blockquote>
+<h3 id="部件"><a href="#部件" class="headerlink" title="部件"></a>部件</h3><blockquote>
+<p>(里面有一个很好的例子)把一套部件组装出来。</p>
+</blockquote>
+<div class="note info"><h2 id="第六章：数组">第六章：数组</h2></div>
+
+<blockquote>
+<p><code>JavaScript</code>里的数组都是类数组对象。没有真正意义上的数组。</p>
+<p><code>JavaScript</code>数组的<code>length</code>是没有上界的。如果你使用大于等于当前<code>length</code>的数字作为下标来存储一个元素，那么<code>length</code>会被增大，不会发生数组越界错误。</p>
+<p>可以通过检查<code>constructor</code>属性判断是不是数组还是对象</p>
+</blockquote>
+<div class="note info"><h2 id="第九章：代码风格">第九章：代码风格</h2></div>
+
+<blockquote>
+<p><code>JavaScript</code>的弱类型和过度的容错性导致程序质量无法在编译的时候获得保障。</p>
+<p>我对代码块内容和对象字面量缩进4个空格。我放了一个空格在<code>if</code>和<code>（</code>之间，让<code>if</code>看起来不想是函数调用。</p>
+<p>我在除了<code>.</code>和<code>[</code>的所有的中置运算符的两边都放了空格。</p>
+<p>把<code>{</code>放在一行的结尾而不是下一行的开始，因为它会避免<code>JavaScript</code>的<code>return</code>语句中一个可怕的设计错误。</p>
+<p>在<code>JavaScript</code>中，我更喜欢使用行注释，我把快注释用于正式文档记录与注释。</p>
+<p>在每个函数开始的部分声明我所有的变量。</p>
+<p>不允许<code>switch</code>语句块中的条件穿越到下一个<code>case</code>语句。</p>
+<p>使用闭包能提供进一步的信息隐藏，增强模块的健壮性。</p>
+</blockquote>
+<div class="note info"><h2 id="第十章：优美的特性">第十章：优美的特性</h2></div>
+
+<h3 id="精简的JS都是好东西，包括"><a href="#精简的JS都是好东西，包括" class="headerlink" title="精简的JS都是好东西，包括"></a>精简的JS都是好东西，包括</h3><blockquote>
+<p>1.函数是顶级对象。在精简的Js中，函数是有词法作用域的闭包<br>2.基于原型继承的动态对象。对象是无类别的。我们可以通过普通的赋值给任意对象增加一个新成员属性，一个对象可以从另一个对象继承成员属性。<br>3.对象字面量和数组字面量。这对创建新的对象和数组来说是一种非常方便的表示法。JS字面量是数据交换格式JSON的灵感之源。</p>
+</blockquote>
+<div class="note"><h2 id="后记">后记</h2></div>
+
+<p>一本好书是，就算是只有薄薄的一百五十多页，但也是全程高能，根本停不下来啊。看完之后对于<code>JavaScript</code>这门语言有了更加全面的认识。任何一门被人们广泛使用语言都是有其过人之处，当然也有其糟粕，甚至是毒瘤。</p>
+</div></article></div></section><footer><div class="paginator"><a href="/2016/08/13/Sass学习/" class="prev">PREV</a><a href="/2016/07/29/Nodejs单元测试/" class="next">NEXT</a></div><div class="copyright"><p>© 2015 - 2016 <a href="http://code.mrwaite.cn">Mrwaite</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/pinggod/hexo-theme-apollo" target="_blank">hexo-theme-apollo</a>.</p></div></footer></div><script async src="//cdn.bootcss.com/mathjax/2.6.1/MathJax.js?config=TeX-MML-AM_CHTML"></script><script>(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;e=o.createElement(i);r=o.getElementsByTagName(i)[0];e.src='//www.google-analytics.com/analytics.js';r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));ga('create',"UA-65933410-1",'auto');ga('send','pageview');</script></body></html>

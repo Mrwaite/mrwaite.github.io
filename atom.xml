@@ -1,0 +1,503 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Mrwaite`s Blog</title>
+  
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://code.mrwaite.cn/"/>
+  <updated>2016-09-28T12:07:35.783Z</updated>
+  <id>http://code.mrwaite.cn/</id>
+  
+  <author>
+    <name>Mrwaite</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Hello World</title>
+    <link href="http://code.mrwaite.cn/2016/09/28/hello-world/"/>
+    <id>http://code.mrwaite.cn/2016/09/28/hello-world/</id>
+    <published>2016-09-28T12:07:35.783Z</published>
+    <updated>2016-09-28T12:07:35.783Z</updated>
+    
+    <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>学习Gulp的一些收获</title>
+    <link href="http://code.mrwaite.cn/2016/09/25/Gulp/"/>
+    <id>http://code.mrwaite.cn/2016/09/25/Gulp/</id>
+    <published>2016-09-25T12:29:49.000Z</published>
+    <updated>2016-09-27T13:01:53.340Z</updated>
+    
+    <content type="html"><![CDATA[<div class="note info"><h2 id="ulp,Grunt,Webpack">Gulp,Grunt,Webpack</h2></div>
+
+<p>之前一直对于<code>Grunt</code>,<code>Gulp</code>,<code>Webpack</code>它们之间到底是什么关系<br>一直迷惑不已,最近对于<code>Gulp</code>的学习中,算是对于它们有了初步的了解.   </p>
+<p>其实<code>Grunt</code>和<code>Gulp</code>,与<code>webpack</code>不是一回事!</p>
+<p><code>Gulp</code>应该和<code>Grunt</code>相互比较.它们都是一种工具能够优化前端的工作流程.像是<code>sass</code>的编译,自动添加css前缀,压缩css,js的校验合并压缩,监视功能.使用<code>Grunt</code>/<code>Gulp</code>,然后配置需要的插件,就可以让你脱离繁琐的手工操作,让这些自动化工具帮你完成.</p>
+<a id="more"></a>
+<p>而<code>webpack</code>是一种JS模块化的方案,和它功能类似有<code>browserify</code>,<code>seajs</code>,<code>requirejs</code>.虽然他们都是解决JS模块化的方案,但是他们之间还是有区别的.</p>
+<ul>
+<li><code>seajs</code>/<code>requirejs</code> : 是一种在线’编译’的的模块方案.怎么说就是,在页面上加载了AMD或者CMD解释器,然后浏览器可以通过这样的一个解释器,知道上面两个模块化规范的规则,就能认识<code>define</code>,<code>exports</code>,<code>module</code>等.</li>
+<li><code>webpack</code>/<code>browserify</code> : 这是一个’预编译’模块的方案,它们不需要在浏览器当中加载,你只需要在本地写好符合模块化规范n的JS文件,然后通过相应的编译工具,就能编译成浏览器能识别的JS文件.</li>
+</ul>
+<p>当然<code>gulp</code>等自动化工具也能通过插件,使用像是<code>webpack</code>这样的模块化方案.</p>
+<p>接下来主要讲讲我醉经了解的自动化工具<code>Gulp</code></p>
+<div class="note info"><h2 id="预处理与后处理器">预处理与后处理器</h2></div>
+
+<h3 id="预处理器"><a href="#预处理器" class="headerlink" title="预处理器"></a>预处理器</h3><p>说到预处理器,<code>sass</code>,<code>less</code>,<code>stylus</code>都是目前比较主流的预处理器.用过像是<code>sass</code>这样的预处理器都知道,他们会有自己的一套语法,像是变量,函数,嵌套,混合器,继承等,然后再编译成浏览器能识别的css代码.这样,编译前和编译后是完全不同的语言</p>
+<h4 id="实现原理"><a href="#实现原理" class="headerlink" title="实现原理"></a>实现原理</h4><ol>
+<li>首次取到预处理器的源代码的分析树</li>
+<li>将有动态生成的,比如一些变量和函数的分析树,转化成静态分析树</li>
+<li>将静态分析树转化为<code>css</code>的分析树</li>
+<li>将<code>css</code>分析树转化为css代码</li>
+</ol>
+<h3 id="后处理器"><a href="#后处理器" class="headerlink" title="后处理器"></a>后处理器</h3><p>而css后处理器是对css代码进行处理,最终生成的还是css代码,编译前的和编译后的代码都是css.</p>
+<h4 id="实现原理-1"><a href="#实现原理-1" class="headerlink" title="实现原理"></a>实现原理</h4><ol>
+<li>先将源代码做css解析,获得分析树</li>
+<li>对于得到的cs分析树,做后处理</li>
+<li>将后处理好的css分析树,转换成css代码</li>
+</ol>
+<h3 id="比较"><a href="#比较" class="headerlink" title="比较"></a>比较</h3><p>我感觉css预处理器可以算是一个新的语言新的语法,这样会增加我们的学习成本与使用门槛,而且可能会因为预处理器跟不上留恋器或者其他的版本的更迭而出现问题.而后处理器原先就是css语法,几乎是0门槛,它对于css分析树的处理是依据<code>can i use</code>网站实时的更新.但是css预处理器的强大之处在于逻辑能力的处理能力强,灵活,改善项目结构,而后处理器在这方便就显得拙荆见肘了.</p>
+<h3 id="CSSGrace"><a href="#CSSGrace" class="headerlink" title="CSSGrace"></a>CSSGrace</h3><div class="note info"><h2 id="Gulp">Gulp</h2></div>
+
+<p>看网上大家对于<code>Grunt</code>和<code>Gulp</code>的比较,好像<code>Gulp</code>比起<code>Grunt</code>配置更简单而且更容易阅读和维护,<code>Gulp</code>还支持管道处理!so,我就入坑<code>Gulp</code>.</p>
+<p><code>Gulp</code>一般都是配合相应的插件来完成一些具体的任务的.</p>
+<p><code>gulp.task</code>是用来创建任务的,<code>gulp-src</code>是设置需要处理的文件的路径(可以是多文件数组,也可以是正则表达式),<code>gulp-dest</code>是设置生成文件的路径(可以在一个插件结束之后立即保存,之后继续管道到下一个插件处理).</p>
+<p>下面就列举一些常用的插件:</p>
+<h4 id="gulp-ruby-sass-gulp-autoprefixer-gulp-minify-css"><a href="#gulp-ruby-sass-gulp-autoprefixer-gulp-minify-css" class="headerlink" title="gulp-ruby-sass + gulp-autoprefixer + gulp-minify-css"></a>gulp-ruby-sass + gulp-autoprefixer + gulp-minify-css</h4><p>上面这些插件的组合可以实现<code>sass</code>的编译,自动添加前缀,压缩.</p>
+<h5 id="gulp-jshint-gulp-concat-gulp-uglify"><a href="#gulp-jshint-gulp-concat-gulp-uglify" class="headerlink" title="gulp-jshint + gulp-concat + gulp-uglify"></a>gulp-jshint + gulp-concat + gulp-uglify</h5><p>实现js代码的校验,合并和压缩,之前对于gulp-concat的合并有写疑惑?比如有些文件有依赖关系.查资料之后好像可以用webpack插件或者gulp-order来控制顺序之类的.</p>
+<p>还有压缩图片,清除文件,这只默认任务,监听文件,自动刷新页面之类的插件的使用就不做累述了.</p>
+<div class="note info"><h2 id="遇到的问题">遇到的问题</h2></div>
+
+<p>之前参考一篇gulp的教程,上面gulp-sass插件是这么使用的</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">gulp.task(<span class="string">'styles'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> gulp.src(<span class="string">'src/styles/main.scss'</span>)</div><div class="line">    .pipe(sass(&#123; style: <span class="string">'expanded'</span> &#125;))</div><div class="line">    .pipe(autoprefixer(<span class="string">'last 2 version'</span>, <span class="string">'safari 5'</span>, <span class="string">'ie 8'</span>, <span class="string">'ie 9'</span>, <span class="string">'opera 12.1'</span>, <span class="string">'ios 6'</span>, <span class="string">'android 4'</span>))</div><div class="line">    .pipe(gulp.dest(<span class="string">'dist/assets/css'</span>))</div><div class="line">    .pipe(rename(&#123;suffix: <span class="string">'.min'</span>&#125;))</div><div class="line">    .pipe(minifycss())</div><div class="line">    .pipe(gulp.dest(<span class="string">'dist/assets/css'</span>))</div><div class="line">    .pipe(notify(&#123; message: <span class="string">'Styles task complete'</span> &#125;));</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>会报这样的错误:<code>Gulp.js TypeError: glob pattern string required</code></p>
+<p>在stackoverflow上的解答之后才知道gulp-sass的API已经改变的了需要已这样的方式使用此插件:<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">gulp.task(<span class="string">'styles'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> sass(<span class="string">'sass/*.scss'</span>, &#123;</div><div class="line">      style: <span class="string">'XXXXXXX'</span></div><div class="line">    &#125;)</div><div class="line">    .pipe(XXXXXX);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>在使用gulp-jshint插件的时候遇到这样的报错:<code>Gulp Error: Cannot find module &#39;jshint/src/cli&#39;</code>,<br>原因是只是安装了gulp-jshint没有安装jshint,然后<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install --save-dev jshint gulp-jshint</div></pre></td></tr></table></figure></p>
+<div class="note info"><h2 id="最近的感想">最近的感想</h2></div>
+
+<p>最近可能是感觉到了下一个寒假结束之后自己马上就要投投简历,找实习了.前几天又帮一个学长答笔试题:),看到现场来参加笔试的人是如此之多,竞争压力是如此之大(好像是几千人,就招三四十个人..)</p>
+<p>也看到了一些同龄的也在学前端的在校大学生,感觉虽然自己学前端有段时间了,但是现在掌握的东西都是个p!!!!</p>
+<p>就说最近看到的一个三本学校的大四学长的2015总结,上面提到的名词都有:Flex,react,Angular,sass,PHP,Redis,MongoDB,vue…</p>
+<p>还是菜啊,加油吧,自己!</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;div class=&quot;note info&quot;&gt;&lt;h2 id=&quot;ulp,Grunt,Webpack&quot;&gt;Gulp,Grunt,Webpack&lt;/h2&gt;&lt;/div&gt;
+
+&lt;p&gt;之前一直对于&lt;code&gt;Grunt&lt;/code&gt;,&lt;code&gt;Gulp&lt;/code&gt;,&lt;code&gt;Webpack&lt;/code&gt;它们之间到底是什么关系&lt;br&gt;一直迷惑不已,最近对于&lt;code&gt;Gulp&lt;/code&gt;的学习中,算是对于它们有了初步的了解.   &lt;/p&gt;
+&lt;p&gt;其实&lt;code&gt;Grunt&lt;/code&gt;和&lt;code&gt;Gulp&lt;/code&gt;,与&lt;code&gt;webpack&lt;/code&gt;不是一回事!&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;Gulp&lt;/code&gt;应该和&lt;code&gt;Grunt&lt;/code&gt;相互比较.它们都是一种工具能够优化前端的工作流程.像是&lt;code&gt;sass&lt;/code&gt;的编译,自动添加css前缀,压缩css,js的校验合并压缩,监视功能.使用&lt;code&gt;Grunt&lt;/code&gt;/&lt;code&gt;Gulp&lt;/code&gt;,然后配置需要的插件,就可以让你脱离繁琐的手工操作,让这些自动化工具帮你完成.&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="Gulp" scheme="http://code.mrwaite.cn/tags/Gulp/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Sass学习</title>
+    <link href="http://code.mrwaite.cn/2016/08/13/Sass%E5%AD%A6%E4%B9%A0/"/>
+    <id>http://code.mrwaite.cn/2016/08/13/Sass学习/</id>
+    <published>2016-08-13T12:38:36.000Z</published>
+    <updated>2016-08-13T13:14:30.263Z</updated>
+    
+    <content type="html"><![CDATA[<div class="note info"><h2 id="使用变量">使用变量</h2></div>
+
+<blockquote>
+<p><code>$</code>声明的变量是有块级作用域的</p>
+<p><code>Sass</code>的变量名可以与css中的属性名和选择器名称相同</p>
+<p>中划线或下划线这两种用法相互兼容</p>
+</blockquote>
+<div class="note info"><h2 id="嵌套css规则">嵌套css规则</h2></div>
+
+<blockquote>
+<p><code>Sass</code>会把父选择器放在子选择器前面，形成一条一条规则（但是这样的方案，根据css样式从右到左解析来说，效率不太好）</p>
+<p><code>Sass</code>也有<code>@import</code>的功能，但是<code>Sass</code>是在<code>Sass</code>文件编译成<code>css</code>文件的时候就已经导入了，而且导入的文件是全局变量都可以使用</p>
+<p>可以在选择器里面嵌套导入</p>
+</blockquote>
+<a id="more"></a>
+<div class="note info"><h2 id="注释">注释</h2></div>
+
+<blockquote>
+<p>单行编译时注释会被忽略，多行不会。</p>
+</blockquote>
+<div class="note info"><h2 id="混合器">混合器</h2></div>
+
+<blockquote>
+<p>判断一组代码是否可以组成一个混合器，一条经验法则就是你能否为这个混合器相处一个好名字</p>
+<p><code>css</code>类是对于<code>html</code>当中语义化的功能模块的描述，而混合器是对于<code>css</code>中最终呈现的样式效果的描述</p>
+<p>混合器可以和函数一样传递参数，并且做一系列的分支循环判断</p>
+</blockquote>
+<p>混合器的实参的表示可以是这样的，不用考虑顺序的影响：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">@mixin link-colors($normal, $hover, $visited) &#123;</div><div class="line">  color: $normal;</div><div class="line">  &amp;:hover &#123; color: $hover; &#125;</div><div class="line">  &amp;:visited &#123; color: $visited; &#125;</div><div class="line">&#125;</div><div class="line">a &#123;</div><div class="line">    @include link-colors(</div><div class="line">      $normal: blue,</div><div class="line">      $visited: green,</div><div class="line">      $hover: red</div><div class="line">  );</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p> 也可以这样展示默认的参数：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">@mixin link-colors(</div><div class="line">    $normal,</div><div class="line">    $hover: $normal,</div><div class="line">    $visited: $normal</div><div class="line">  )</div><div class="line">&#123;</div><div class="line">  color: $normal;</div><div class="line">  &amp;:hover &#123; color: $hover; &#125;</div><div class="line">  &amp;:visited &#123; color: $visited; &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><div class="note info"><h2 id="继承">继承</h2></div><br>example :<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line">.error &#123;</div><div class="line">  border : 1px red;</div><div class="line">  background : #fdd;</div><div class="line">&#125;</div><div class="line"></div><div class="line">.error a &#123;</div><div class="line">  list-style-type: none;</div><div class="line">&#125;</div><div class="line"></div><div class="line">h1.error &#123;</div><div class="line">  color : red;</div><div class="line">&#125;</div><div class="line"></div><div class="line">.seriousError &#123;</div><div class="line">  @extend .error;</div><div class="line">  border-width : 3px;</div><div class="line">&#125;</div><div class="line"></div><div class="line">======&gt;</div><div class="line"></div><div class="line">.error, .seriousError &#123;</div><div class="line">  border: 1px red;</div><div class="line">  background: #fdd; &#125;</div><div class="line"></div><div class="line">.error a, .seriousError a &#123;</div><div class="line">  list-style-type: none; &#125;</div><div class="line"></div><div class="line">h1.error, h1.seriousError &#123;</div><div class="line">  color: red; &#125;</div><div class="line"></div><div class="line">.seriousError &#123;</div><div class="line">  border-width: 3px; &#125;</div></pre></td></tr></table></figure></p>
+<blockquote>
+<p>从上面就可以看出extand是怎么运行的，这时候就需要考虑如果前后样式冲突的时候怎么判断权重</p>
+</blockquote>
+<h3 id="继承的使用场景"><a href="#继承的使用场景" class="headerlink" title="继承的使用场景"></a>继承的使用场景</h3><p>你发现你的某个类（比如说.seriousError）另一个类（比如说.error）的细化。你会怎么做？</p>
+<ol>
+<li>可以为这两个类分别写相同的样式，但是如果有大量的重复怎么办？使用sass时提倡的就是不要做重复的工作。</li>
+<li>可以使用一个选择器组（比如说.error.seriousError）给这两个选择器写相同的样式。如果.error的所有样式都在同一个地方，这种做法很好，但是如果是分散在样式表的不同地方呢？再这样做就困难多了。</li>
+<li>你可以使用一个混合器为这两个类提供相同的样式，但当.error的样式修饰遍布样式表中各处时，这种做法面临着跟使用选择器组一样的问题。这两个类也不是恰好有相同的 样式。你应该更清晰地表达这种关系。</li>
+<li>综上所述应该使用@extend。让.seriousError从.error继承样式，使两者之间的关系非常清晰。更重要的是无论你在样式表的哪里使用.error``.seriousError都会继承其中的样式。</li>
+</ol>
+<h3 id="继承的工作细节"><a href="#继承的工作细节" class="headerlink" title="继承的工作细节"></a>继承的工作细节</h3><ol>
+<li>继承重复的是选择器，但是混合器重复的是属性，继承的代码量更少一点</li>
+<li>就是我上面说的继承之后可能要是会有冲突，看权重就好了</li>
+</ol>
+<h3 id="使用时注意的"><a href="#使用时注意的" class="headerlink" title="使用时注意的"></a>使用时注意的</h3><p>继承中不要使用后代选择器</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;div class=&quot;note info&quot;&gt;&lt;h2 id=&quot;使用变量&quot;&gt;使用变量&lt;/h2&gt;&lt;/div&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;&lt;code&gt;$&lt;/code&gt;声明的变量是有块级作用域的&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;Sass&lt;/code&gt;的变量名可以与css中的属性名和选择器名称相同&lt;/p&gt;
+&lt;p&gt;中划线或下划线这两种用法相互兼容&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;div class=&quot;note info&quot;&gt;&lt;h2 id=&quot;嵌套css规则&quot;&gt;嵌套css规则&lt;/h2&gt;&lt;/div&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;&lt;code&gt;Sass&lt;/code&gt;会把父选择器放在子选择器前面，形成一条一条规则（但是这样的方案，根据css样式从右到左解析来说，效率不太好）&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;Sass&lt;/code&gt;也有&lt;code&gt;@import&lt;/code&gt;的功能，但是&lt;code&gt;Sass&lt;/code&gt;是在&lt;code&gt;Sass&lt;/code&gt;文件编译成&lt;code&gt;css&lt;/code&gt;文件的时候就已经导入了，而且导入的文件是全局变量都可以使用&lt;/p&gt;
+&lt;p&gt;可以在选择器里面嵌套导入&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+    
+      <category term="Sass" scheme="http://code.mrwaite.cn/tags/Sass/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>读JavaScript语言精粹收获</title>
+    <link href="http://code.mrwaite.cn/2016/08/10/%E8%AF%BBJavaScript%E8%AF%AD%E8%A8%80%E7%B2%BE%E7%B2%B9%E6%94%B6%E8%8E%B7/"/>
+    <id>http://code.mrwaite.cn/2016/08/10/读JavaScript语言精粹收获/</id>
+    <published>2016-08-10T09:43:09.000Z</published>
+    <updated>2016-08-11T09:18:56.271Z</updated>
+    
+    <content type="html"><![CDATA[<div class="note info"><h2 id="前言">前言</h2></div>
+
+<blockquote>
+<p>接触<code>JavaScript</code>也有一段时间了，好早之前就在各方的<code>JavaScript</code>经典书籍推荐上纷纷提到过这本书。其实我也忘了是什么原因导致我好几次刚开始阅读这本书就中断了。这几天我就花了点时间仔细阅读了这本书。并写下这篇博客记录自己的收获，备忘。（按照本书的目录结构整理）  </p>
+</blockquote>
+<div class="note info"><h2 id="第一章：精华">第一章：精华</h2></div>
+
+<blockquote>
+<p>浏览器的<code>API</code>和文档对象模型<code>DOM</code>相当糟糕，它的规范制定的很拙劣并且实现互不一致。</p>
+<p>那些优秀的想法包括：函数， 弱类型， 动态对象和富有表现力的对象字面量表示法。那些糟糕的想法包括给予全局变量的编程模型。</p>
+<p>词法作用域是词法分析的过程中指派的作用域，在词法解析过程中定死。动态作用域在代码运行时定义，非代码解析时。动态不关心哪里声明，关心在哪里调用，和this相似，基于调用栈，词法作用域相反。</p>
+<p><code>JavaScript</code>是一门弱类型语言。<code>JavaScript</code>有非常强大的对象字面量表示法。</p>
+</blockquote>
+<a id="more"></a>
+<div class="note info"><h2 id="第二章：语法">第二章：语法</h2></div>
+
+<blockquote>
+<p>没有用的注释比没有注释更糟糕。/<em> </em>/注释可能会在正则表达式上出错。</p>
+<p>在<code>JavaScript</code>保留字里面有一些本应该被保留而没有被保留的字，包括<code>undefined</code>，<code>NaN</code>和<code>Infinity</code>。</p>
+<p><code>JavaScript</code>只有一种数字类型，它在内部被表示为64位浮点数。整数部分按照54位来算。        </p>
+<p>只有下面被列出来的值被当做假（<code>false</code>）：<code>false</code>，<code>null</code>，<code>undefined</code>，空字符串 ‘ ‘，数字 0， 数字<code>NuN</code>。</p>
+<p><code>typeof</code>运算一个数组或者<code>null</code>，那么结果是<code>&#39;object&#39;</code>。</p>
+<p>定义字面量的时候，属性名可以是标识符或者字符串，对象的属性名是在编译的时候才能知道。</p>
+</blockquote>
+<div class="note info"><h2 id="第三章：对象">第三章：对象</h2></div>
+
+<blockquote>
+<p>数组是对象，函数是对象，正则表达式是对象，对象自然也是对象。属性名可以是包括空字符串在内的任意字符。<code>JavaScript</code>里面标识符包含连接符（-）是不合法的。</p>
+<p>删除对象的属性可能会让来自原型链中的属性透现出来。（暴露出原型的接口）。</p>
+</blockquote>
+<div class="note info"><h2 id="第四章：函数">第四章：函数</h2></div>
+
+<blockquote>
+<p><code>JavaScript</code>设计最出色的地方就是它的函数实现。</p>
+<p>函数的参数将被定义为函数中的变量。每个函数还会接受两个附加的参数：<code>this</code>和<code>arguments</code>。</p>
+<p><code>this</code>有4种调用模式：1.方法调用 2.函数调用模式 3.构造器调用模式 4.<code>apply</code>调用模式</p>
+<p>方法调用模式：<code>this</code>到对象绑定发生在调用的时候。这个‘超级’延迟绑定使得函数可以对<code>this</code>高度的复用。</p>
+<p>函数调用模式：<code>this</code>绑定到全局对象，这是语言设计上的一个错误。<code>this</code>应该绑定到外部函数的<code>this</code>变量。</p>
+<p><code>arguments</code>数组可以访问函数被调用的时候传递给的全部参数，包括那些没有分配给函数声明是定义的形式参数的多余参数。<code>arguments</code>是一个类数组对象。</p>
+<p><code>JavaScript</code>没有提供尾递归优化。尾递归优化是函数返回自身地柜调用的结果，那个调用的过程会被替换成一个循环，显著提高速度。<code>JavaScript</code>深度递归可能会因为堆栈溢出而运行失败。</p>
+</blockquote>
+<h3 id="闭包"><a href="#闭包" class="headerlink" title="闭包"></a>闭包</h3><blockquote>
+<p>(自己总结)闭包的应用场景：1.保护函数内变量安全：迭代器，生成器 2.在内存中维护变量：缓存数据， 柯理化。<code>this</code>指向上一个执行环境。</p>
+<p>在闭包里面方法不是访问该参数的一个副本，它访问的是该参数本身。（执行环境未被销毁）</p>
+</blockquote>
+<h3 id="模块"><a href="#模块" class="headerlink" title="模块"></a>模块</h3><blockquote>
+<p>模块是一个提供接口却隐藏状态与实现的函数或者对象。（存在在执行环境中的私有变量）。</p>
+<p>模块的一般形式是：一个定义了私有变量和函数的函数；利用闭包创建可以访问私有变量的函数的特权函数；最后返回这个特权函数，或者把它们保存到一个可以访问的地方。</p>
+</blockquote>
+<h3 id="级联"><a href="#级联" class="headerlink" title="级联"></a>级联</h3><blockquote>
+<p>在方法的<code>return</code>处返回<code>this</code>而不是<code>undefined</code>。级联技术可以产出极富表现力的接口。</p>
+<p>一个接口没有必要做太多的事。</p>
+</blockquote>
+<div class="note info"><h2 id="第五章：继承（没有看的很明白）">第五章：继承(没有看的很明白)</h2></div>
+
+<h3 id="函数化"><a href="#函数化" class="headerlink" title="函数化"></a>函数化</h3><blockquote>
+<p>继承模式的一个弱点就是没有办法保护隐私。我们有更好的选择就是应用模块模式。</p>
+<p>该函数包括四个步骤：<br>1.创建一个新对象，有很对的方法可以构造一个对象。可以用对象字面量，或者<code>new</code>一个构造器函数，或者使用<code>Object.create</code>方法构造一个已存在函数的实例，或者调用任意一个会返回一个对象的函数。<br>2.有选择的定义私有实例变量和方法。<br>3.给新对象扩充方法。这些对象有特权取访问参数。<br>4.返回那个新对象。</p>
+</blockquote>
+<h3 id="部件"><a href="#部件" class="headerlink" title="部件"></a>部件</h3><blockquote>
+<p>(里面有一个很好的例子)把一套部件组装出来。</p>
+</blockquote>
+<div class="note info"><h2 id="第六章：数组">第六章：数组</h2></div>
+
+<blockquote>
+<p><code>JavaScript</code>里的数组都是类数组对象。没有真正意义上的数组。</p>
+<p><code>JavaScript</code>数组的<code>length</code>是没有上界的。如果你使用大于等于当前<code>length</code>的数字作为下标来存储一个元素，那么<code>length</code>会被增大，不会发生数组越界错误。</p>
+<p>可以通过检查<code>constructor</code>属性判断是不是数组还是对象</p>
+</blockquote>
+<div class="note info"><h2 id="第九章：代码风格">第九章：代码风格</h2></div>
+
+<blockquote>
+<p><code>JavaScript</code>的弱类型和过度的容错性导致程序质量无法在编译的时候获得保障。</p>
+<p>我对代码块内容和对象字面量缩进4个空格。我放了一个空格在<code>if</code>和<code>（</code>之间，让<code>if</code>看起来不想是函数调用。</p>
+<p>我在除了<code>.</code>和<code>[</code>的所有的中置运算符的两边都放了空格。</p>
+<p>把<code>{</code>放在一行的结尾而不是下一行的开始，因为它会避免<code>JavaScript</code>的<code>return</code>语句中一个可怕的设计错误。</p>
+<p>在<code>JavaScript</code>中，我更喜欢使用行注释，我把快注释用于正式文档记录与注释。</p>
+<p>在每个函数开始的部分声明我所有的变量。</p>
+<p>不允许<code>switch</code>语句块中的条件穿越到下一个<code>case</code>语句。</p>
+<p>使用闭包能提供进一步的信息隐藏，增强模块的健壮性。</p>
+</blockquote>
+<div class="note info"><h2 id="第十章：优美的特性">第十章：优美的特性</h2></div>
+
+<h3 id="精简的JS都是好东西，包括"><a href="#精简的JS都是好东西，包括" class="headerlink" title="精简的JS都是好东西，包括"></a>精简的JS都是好东西，包括</h3><blockquote>
+<p>1.函数是顶级对象。在精简的Js中，函数是有词法作用域的闭包<br>2.基于原型继承的动态对象。对象是无类别的。我们可以通过普通的赋值给任意对象增加一个新成员属性，一个对象可以从另一个对象继承成员属性。<br>3.对象字面量和数组字面量。这对创建新的对象和数组来说是一种非常方便的表示法。JS字面量是数据交换格式JSON的灵感之源。</p>
+</blockquote>
+<div class="note"><h2 id="后记">后记</h2></div>
+
+<p>一本好书是，就算是只有薄薄的一百五十多页，但也是全程高能，根本停不下来啊。看完之后对于<code>JavaScript</code>这门语言有了更加全面的认识。任何一门被人们广泛使用语言都是有其过人之处，当然也有其糟粕，甚至是毒瘤。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;div class=&quot;note info&quot;&gt;&lt;h2 id=&quot;前言&quot;&gt;前言&lt;/h2&gt;&lt;/div&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;接触&lt;code&gt;JavaScript&lt;/code&gt;也有一段时间了，好早之前就在各方的&lt;code&gt;JavaScript&lt;/code&gt;经典书籍推荐上纷纷提到过这本书。其实我也忘了是什么原因导致我好几次刚开始阅读这本书就中断了。这几天我就花了点时间仔细阅读了这本书。并写下这篇博客记录自己的收获，备忘。（按照本书的目录结构整理）  &lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;div class=&quot;note info&quot;&gt;&lt;h2 id=&quot;第一章：精华&quot;&gt;第一章：精华&lt;/h2&gt;&lt;/div&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;浏览器的&lt;code&gt;API&lt;/code&gt;和文档对象模型&lt;code&gt;DOM&lt;/code&gt;相当糟糕，它的规范制定的很拙劣并且实现互不一致。&lt;/p&gt;
+&lt;p&gt;那些优秀的想法包括：函数， 弱类型， 动态对象和富有表现力的对象字面量表示法。那些糟糕的想法包括给予全局变量的编程模型。&lt;/p&gt;
+&lt;p&gt;词法作用域是词法分析的过程中指派的作用域，在词法解析过程中定死。动态作用域在代码运行时定义，非代码解析时。动态不关心哪里声明，关心在哪里调用，和this相似，基于调用栈，词法作用域相反。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;JavaScript&lt;/code&gt;是一门弱类型语言。&lt;code&gt;JavaScript&lt;/code&gt;有非常强大的对象字面量表示法。&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+    
+      <category term="JavaScript" scheme="http://code.mrwaite.cn/tags/JavaScript/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Nodejs单元测试</title>
+    <link href="http://code.mrwaite.cn/2016/07/29/Nodejs%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/"/>
+    <id>http://code.mrwaite.cn/2016/07/29/Nodejs单元测试/</id>
+    <published>2016-07-29T09:30:08.000Z</published>
+    <updated>2016-08-10T10:12:27.606Z</updated>
+    
+    <content type="html"><![CDATA[<div class="note info"><h2>使用模块</h2></div>
+
+<h3 id="mocha"><a href="#mocha" class="headerlink" title="mocha"></a><a href="https://mochajs.org" target="_blank" rel="external">mocha</a></h3><p>@转载自阮一峰：<a href="http://www.ruanyifeng.com/blog/2015/12/a-mocha-tutorial-of-examples.html" target="_blank" rel="external">测试框架Mocha实例教程</a><br>JavaScript测试框架之一，能在浏览器和Node环境使用。可以通过它为JavaScript应用添加测试，从而保证代码的质量。  </p>
+<p>为了方便起见，在全句环境安装<code>mocha</code>：<code>npm install -g mocha</code></p>
+<p>通常测试脚本与所要测试的源码脚本同名，但是后缀名为<code>.test.js</code>（表示测试）或者<code>.spex.js</code>（表示规格）。比如<code>add.jd</code>的测试脚本名称为<code>add.test.js</code>。   </p>
+<p>在<code>mocha</code>语法里面：<br><code>describe</code>块称为“测试套件”，表示一组相关的测试。它是一个函数，第一个参数是测试套件的名称，第二个参数是一个实际执行的函数。<br><code>it</code>块称为“测试用例”，表示一个单独的测试，为测试的最小单位。它是一个函数，第一个参数是测试用例的名称，第二个参数是一个实际执行的函数。  </p>
+<p><code>describe</code>块孩提供了测试用例的四个hook： <code>before()</code>,<code>after()</code>,<code>beforeEach()</code>,<code>afterEach()</code>     </p>
+<a id="more"></a>
+<p><strong>注意</strong>：<br>在协作项目的时候应该考虑<code>mocha</code>的版本问题，因为在不同版本的<code>mocha</code>下是不兼容的。这时应该注意：  </p>
+<ol>
+<li><code>$ npm i mocha --save-dex</code>， 安装一个局部的<code>mocha</code>到项目目录中去</li>
+<li><code>$ ./node_modules/.bin/mocha</code>， 用刚才安装的局部的<code>mocha</code>来跑测试代码<br>但是每次这样的输入很麻烦。可以通过使用<code>Makefile</code>帮助我们记住复杂的配置，详见：<a href="https://github.com/alsotang/node-lessons/blob/master/lesson6/README.md" target="_blank" rel="external">包教不包会</a>，<a href="http://blog.csdn.net/haoel/article/details/2886" target="_blank" rel="external">Makefile详解</a>。</li>
+</ol>
+<h3 id="should"><a href="#should" class="headerlink" title="should"></a><a href="https://github.com/tj/should.js" target="_blank" rel="external">should</a></h3><p><code>should</code>是断言库模块之一，什么是“断言”？“断言”就是判断源码的实际执行结果与预期的执行结果是否一致，如果不一致就抛出错误。   </p>
+<p>所有的测试用例（<code>it</code>块）都应该包含有一句或者多句断言。它是编写测试用例的关键。  </p>
+<p><code>mocha</code>为了保持自己的灵活性，因此默认不提供断言的<code>API</code>。在Nodejs中mocha和should是协作完成的。</p>
+<p>@转载自淘宝FED：<a href="https://github.com/tj/should.js" target="_blank" rel="external">断言库的比较</a><br>断言库 | 优点 | 缺点 | 备注<br>— | — | — | —<br>Nodejs核心库Assert | 无需第三方依赖 | 语法较烂 | -<br>Should.js | API比较语义 | 文档比较烂 | -<br>expect.js | - | - | 比较中庸<br>chai | 大而全的API | - | -</p>
+<h3 id="istanbul"><a href="#istanbul" class="headerlink" title="istanbul"></a><a href="https://www.npmjs.com/package/istanbul" target="_blank" rel="external">istanbul</a></h3><p>Nodejs覆盖率统计工具。<br>作用：提供一系列指标取衡量单元测试覆盖了哪些功能代码。istanbul提供了代码的语句覆盖率，分支覆盖率，函数覆盖率和行覆盖率的统计。   </p>
+<div class="note info"><h2>知识集成</h2></div>
+
+<h3 id="单元测试类型"><a href="#单元测试类型" class="headerlink" title="单元测试类型"></a>单元测试类型</h3><ol>
+<li>TDD（测试驱动开发）</li>
+<li>BDD（行为驱动开发）</li>
+</ol>
+<h3 id="持续集成"><a href="#持续集成" class="headerlink" title="持续集成"></a>持续集成</h3><p>@转载自阮一峰 ： <a href="http://www.ruanyifeng.com/blog/2015/09/continuous-integration.html" target="_blank" rel="external">持续集成是上面？</a><br><strong>持续集成指的是 频繁的（一天多次）将代码集成到主干。 </strong><br>好处：  </p>
+<ol>
+<li>快速发现错误。每天完成一点更新，集成到主干，快速发现并定位错误。</li>
+<li>防止分支大幅度偏离主干。如果不是经常集成，主干又在不断更新，会导致以后集成难度越来越大。<br><strong>持续集成的目的是为了让偿命快速迭代，同时还能保证高质量</strong>,核心措施是，代码集成到主干之前，必须通过自动化测试。只要有一个测试用例失败就不能集成。</li>
+</ol>
+<p>这里贴上蓬stephen蓬的评论：  </p>
+<blockquote>
+<p>阮老师讲的“持续集成”，正好是我在公司做了将近半年多互联网项目的一个工作流程。我们项目经历了两期，每期都要进行十几次迭代，每次迭代都会在上一个迭代的基&gt; 础上增加几个新功能，并且公司要求开发人员在编码前要先提交该功能的单体测试和集成测试的代码，然后才能开始写代码（所谓的测试驱动开发），然后测试人员要负&gt; 责写端到端的自动化测试代码。公司用Jenkins进行持续集成，SVN管理代码库，Git进行团队开发，Sonar进行代码质量检查。项目成员每天早晨都会收到Jenkins服务&gt; 器发来的前一天的集成测试报告，通知前一天的提交是否完全通过。经历了这样一个持续迭代的过程，给客户交付的代码质量有保证，很少或几乎没有出现过回滚的情况。</p>
+</blockquote>
+<h3 id="npm-使用积累"><a href="#npm-使用积累" class="headerlink" title="npm 使用积累"></a>npm 使用积累</h3><p><code>npm</code>的<code>package.json</code>提供了三种依赖关系的定义：   </p>
+<ol>
+<li>dependencies</li>
+<li>peerDependencies</li>
+<li>devDependencies<br>其中<code>devDependencies</code>是开发是依赖的，比如模块用<code>mocha</code>来测试框架，那么模块开发就依赖<code>mocha</code>,如果别人想为你的模块贡献代码，他也需要安装<code>mocha</code>。但是只是用你模块的人就没必要安装<code>mocha</code>。<br><code>perrDependencies</code>是为插件准备的。比如<code>grunt</code>的插件，里面没有<code>require(&#39;grunt&#39;)</code>，所以用dependencies就有问题。所以需要单独列出来。</li>
+</ol>
+<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><p>Ubuntu下用命令行快速打开各种类型的文件：<code>xdg-open &lt;filename&gt;</code></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;div class=&quot;note info&quot;&gt;&lt;h2&gt;使用模块&lt;/h2&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;mocha&quot;&gt;&lt;a href=&quot;#mocha&quot; class=&quot;headerlink&quot; title=&quot;mocha&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://mochajs.org&quot;&gt;mocha&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;@转载自阮一峰：&lt;a href=&quot;http://www.ruanyifeng.com/blog/2015/12/a-mocha-tutorial-of-examples.html&quot;&gt;测试框架Mocha实例教程&lt;/a&gt;&lt;br&gt;JavaScript测试框架之一，能在浏览器和Node环境使用。可以通过它为JavaScript应用添加测试，从而保证代码的质量。  &lt;/p&gt;
+&lt;p&gt;为了方便起见，在全句环境安装&lt;code&gt;mocha&lt;/code&gt;：&lt;code&gt;npm install -g mocha&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;通常测试脚本与所要测试的源码脚本同名，但是后缀名为&lt;code&gt;.test.js&lt;/code&gt;（表示测试）或者&lt;code&gt;.spex.js&lt;/code&gt;（表示规格）。比如&lt;code&gt;add.jd&lt;/code&gt;的测试脚本名称为&lt;code&gt;add.test.js&lt;/code&gt;。   &lt;/p&gt;
+&lt;p&gt;在&lt;code&gt;mocha&lt;/code&gt;语法里面：&lt;br&gt;&lt;code&gt;describe&lt;/code&gt;块称为“测试套件”，表示一组相关的测试。它是一个函数，第一个参数是测试套件的名称，第二个参数是一个实际执行的函数。&lt;br&gt;&lt;code&gt;it&lt;/code&gt;块称为“测试用例”，表示一个单独的测试，为测试的最小单位。它是一个函数，第一个参数是测试用例的名称，第二个参数是一个实际执行的函数。  &lt;/p&gt;
+&lt;p&gt;&lt;code&gt;describe&lt;/code&gt;块孩提供了测试用例的四个hook： &lt;code&gt;before()&lt;/code&gt;,&lt;code&gt;after()&lt;/code&gt;,&lt;code&gt;beforeEach()&lt;/code&gt;,&lt;code&gt;afterEach()&lt;/code&gt;     &lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="Nodejs" scheme="http://code.mrwaite.cn/tags/Nodejs/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>nodejs爬虫编写时的一些收获</title>
+    <link href="http://code.mrwaite.cn/2016/07/28/nodejs%E7%88%AC%E8%99%AB%E7%BC%96%E5%86%99%E6%97%B6%E7%9A%84%E4%B8%80%E4%BA%9B%E6%94%B6%E8%8E%B7/"/>
+    <id>http://code.mrwaite.cn/2016/07/28/nodejs爬虫编写时的一些收获/</id>
+    <published>2016-07-28T01:20:45.000Z</published>
+    <updated>2016-08-11T09:14:09.103Z</updated>
+    
+    <content type="html"><![CDATA[<div class="note info">使用的模块</div>
+
+<h3 id="superagent"><a href="#superagent" class="headerlink" title="superagent"></a><a href="https://github.com/visionmedia/superagent" target="_blank" rel="external">superagent</a></h3><p><code>superagent</code>是nodejs里一个非常方便的客户端请求代理模块。感觉是封装了<code>http</code>内置模块的一些功能，比如<code>http</code>模块里面会有这样的代码：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">http.get(<span class="string">'http://cnodejs.org/'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">res</span>) </span>&#123;</div><div class="line">	res.on(<span class="string">'data'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">chunk</span>) </span>&#123;&#125;);</div><div class="line">	res.on(<span class="string">'end'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;&#125;).on(<span class="string">'error'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">e</span>) </span>&#123;&#125;;)</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<p>然后相应的<code>superagent</code>代码结构类似的就可以是这样：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">superagent.get(<span class="string">'http://cnodejs.org'</span>).end(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;&#125;);</div></pre></td></tr></table></figure></p>
+<p>有所类似，并没有研究过<code>superagent</code>源码。。   </p>
+<p>当然<code>superagnet</code>还有一些其他强大的功能：</p>
+<ol>
+<li>完美的链式写法</li>
+<li>设置请求头部</li>
+<li>支持全部的http请求方式，并提供相应的参数设置</li>
+<li>可以帮你解析返回的数据，支持三种类型的数据 ：<code>application/x-www-form-urlencoded</code> <code>application/json</code> 和<code>multipart/form-data</code></li>
+<li>支持通过<code>pipe</code>管道流入流出数据<br>还有其他</li>
+</ol>
+<a id="more"></a>
+<h3 id="cheerio"><a href="#cheerio" class="headerlink" title="cheerio"></a><a href="https://github.com/cheeriojs/cheerio" target="_blank" rel="external">cheerio</a></h3><p>为服务器特别定制的，快速，灵活，实时的<code>jQuery</code>核心实现  </p>
+<blockquote>
+<p>Cheerio实现了jQuery核心的一个子集。Cheerio 从jQuery库中删除了所有的DOM不一致和浏览器兼容支持，呈现其真正华丽的API。<br>Cheerio 使用一个非常简单的，一致的DOM模型。这样解析，操作和呈现就会带来令人难以置信的性能提升。初步的端至端的基准测试表明Cheerio比JSDOM快大概8倍。<br>兼容htmlparser2API。Cheerio可以解析几乎所有的HTML或XML文档。</p>
+</blockquote>
+<p>官网上的例子就已经很易懂了：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> cheerio = <span class="built_in">require</span>(<span class="string">'cheerio'</span>),</div><div class="line">$ = cheerio.load(<span class="string">''</span>); <span class="comment">//or $ = cheerio.load('爬虫爬取的网页');</span></div><div class="line">ex : $(<span class="string">'#fruits'</span>)</div></pre></td></tr></table></figure></p>
+<p>这样就可以解析爬取的网页的信息<br>然后在用<code>cheerio</code>的过程中遇到了<code>$(&#39;.example:eq(0)&#39;)</code>报错的问题，经过几番摸索才知道<code>cheerio</code>是不支持<code>:eq</code>但是支持$().eq()。<br>要是想使用<code>$(&#39;.example:eq(0)&#39;)</code>，那就需要<a href="https://github.com/watson/cheerio-eq" target="_blank" rel="external">cheerio-eq</a>这个模块。</p>
+<h3 id="async-与-EventProxy"><a href="#async-与-EventProxy" class="headerlink" title="async 与 EventProxy"></a><a href="https://github.com/caolan/async" target="_blank" rel="external">async</a> 与 <a href="https://github.com/JacksonTian/eventproxy" target="_blank" rel="external">EventProxy</a></h3><p>关于上面这两个模块的信息，我想网上已经很多了，我就不做累述。简单的说就是都是做异步流程控制的。   </p>
+<p>那什么时候用<code>eventproxy</code> ,什么时候用<code>async</code>?<br><figure class="highlight plain"><figcaption><span>@alsotang</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">当你需要去多个源(一般是小于 10 个)汇总数据的时候，用 eventproxy 方便；当你需要用到队列，需要控制并发数，或者你喜欢函数式编程思维时，使用 async。</div></pre></td></tr></table></figure></p>
+<p>应该是各有各的优势，但是现在我感觉<code>async</code>的控制并发连接数，对于爬虫来说实在是好用。  </p>
+<div class="note warning">调试之中遇到的问题</div>
+
+<h3 id="回调函数是可以取到上一级作用域的变量的"><a href="#回调函数是可以取到上一级作用域的变量的" class="headerlink" title="回调函数是可以取到上一级作用域的变量的"></a>回调函数是可以取到上一级作用域的变量的</h3><p>原先以为在运行到回调函数的时候，会找不到原先的作用域，看来是想多了。</p>
+<h3 id="async-mapLimit与superagnet并用"><a href="#async-mapLimit与superagnet并用" class="headerlink" title="async.mapLimit与superagnet并用"></a>async.mapLimit与superagnet并用</h3><p>问题： 设置并发数为5，然后只执行了5个请求就停止请求了。<br>解决： 在<code>superagnet.end()</code>回调函数里加上<code>callback(null, example)</code>。</p>
+<h3 id="503-Service-Temporarily-Unavailable"><a href="#503-Service-Temporarily-Unavailable" class="headerlink" title="503 Service Temporarily Unavailable"></a>503 Service Temporarily Unavailable</h3><p><strong>状态码503</strong>：<br><figure class="highlight plain"><figcaption><span>@百度百科 </span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">503 Service Unavailable：由于临时的服务器维护或者过载，服务器当前无法处理请求。注意：503状态码的存在并不意味着必须在服务器过载的时候使用它。某些服务器只不过是希望拒绝某些客户端的连接。</div></pre></td></tr></table></figure></p>
+<p>这个问题是在爬虫去爬取网页的时候出现的，我原先是想并发40个请求取爬取网站上的信息。但是每次都是爬取到11～12的时候就停止爬取了。（原谅我的无知）<br>首先排查代码的正确性之后，想到的第一个可能性是因为用的是HTTP/1.1的并发限制<code>？</code>，然后经过一番查阅，才知道所谓的并发限制只是浏览器出于对于服务器保护的自发的自我限制。现在的浏览器虽然加大了并发请求书的限制，但是仍然控制在8以内。但是我的爬虫并不是经过浏览器发起请求的，所以并不是上面的问题。<br>第二种可能性，既然不是请求方的问题，那可能是接收端的问题。果然是服务器的问题（其实是我的问题）。   </p>
+<p>转载：<a href="http://developer.51cto.com/art/200908/144792.htm" target="_blank" rel="external">服务器反爬虫策略</a><br>上面这篇文章说了服务器是如何防御爬虫的，我总结一下一共有以下几点：</p>
+<ol>
+<li>手工识别和拒绝爬虫的访问</li>
+<li>通过识别爬虫的User-Agent信息来拒绝爬虫</li>
+<li>通过网站流量统计系统和日志分析来识别爬虫</li>
+<li>网站的实时反爬虫防火墙实现策略</li>
+<li>用网站流量统计系统来改进实时反爬虫系统</li>
+<li>用时间窗口来改进实时反爬虫系统</li>
+</ol>
+<p>之后才知道除去 CNode 的话，别的网站有可能会因为你发出的并发连接数太多而当你是在恶意请求，把你的 IP 封掉。还是年轻啊！</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;div class=&quot;note info&quot;&gt;使用的模块&lt;/div&gt;
+
+&lt;h3 id=&quot;superagent&quot;&gt;&lt;a href=&quot;#superagent&quot; class=&quot;headerlink&quot; title=&quot;superagent&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://github.com/visionmedia/superagent&quot;&gt;superagent&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;&lt;code&gt;superagent&lt;/code&gt;是nodejs里一个非常方便的客户端请求代理模块。感觉是封装了&lt;code&gt;http&lt;/code&gt;内置模块的一些功能，比如&lt;code&gt;http&lt;/code&gt;模块里面会有这样的代码：&lt;br&gt;&lt;figure class=&quot;highlight js&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;http.get(&lt;span class=&quot;string&quot;&gt;&#39;http://cnodejs.org/&#39;&lt;/span&gt;, &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;function&lt;/span&gt; (&lt;span class=&quot;params&quot;&gt;res&lt;/span&gt;) &lt;/span&gt;&amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	res.on(&lt;span class=&quot;string&quot;&gt;&#39;data&#39;&lt;/span&gt;, &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;function&lt;/span&gt; (&lt;span class=&quot;params&quot;&gt;chunk&lt;/span&gt;) &lt;/span&gt;&amp;#123;&amp;#125;);&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;	res.on(&lt;span class=&quot;string&quot;&gt;&#39;end&#39;&lt;/span&gt;, &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;function&lt;/span&gt; (&lt;span class=&quot;params&quot;&gt;&lt;/span&gt;) &lt;/span&gt;&amp;#123;&amp;#125;).on(&lt;span class=&quot;string&quot;&gt;&#39;error&#39;&lt;/span&gt;, &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;function&lt;/span&gt; (&lt;span class=&quot;params&quot;&gt;e&lt;/span&gt;) &lt;/span&gt;&amp;#123;&amp;#125;;)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#125;);&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;然后相应的&lt;code&gt;superagent&lt;/code&gt;代码结构类似的就可以是这样：&lt;br&gt;&lt;figure class=&quot;highlight js&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;superagent.get(&lt;span class=&quot;string&quot;&gt;&#39;http://cnodejs.org&#39;&lt;/span&gt;).end(&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;function&lt;/span&gt; (&lt;span class=&quot;params&quot;&gt;&lt;/span&gt;) &lt;/span&gt;&amp;#123;&amp;#125;);&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;有所类似，并没有研究过&lt;code&gt;superagent&lt;/code&gt;源码。。   &lt;/p&gt;
+&lt;p&gt;当然&lt;code&gt;superagnet&lt;/code&gt;还有一些其他强大的功能：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;完美的链式写法&lt;/li&gt;
+&lt;li&gt;设置请求头部&lt;/li&gt;
+&lt;li&gt;支持全部的http请求方式，并提供相应的参数设置&lt;/li&gt;
+&lt;li&gt;可以帮你解析返回的数据，支持三种类型的数据 ：&lt;code&gt;application/x-www-form-urlencoded&lt;/code&gt; &lt;code&gt;application/json&lt;/code&gt; 和&lt;code&gt;multipart/form-data&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;支持通过&lt;code&gt;pipe&lt;/code&gt;管道流入流出数据&lt;br&gt;还有其他&lt;/li&gt;
+&lt;/ol&gt;
+    
+    </summary>
+    
+    
+      <category term="nodejs" scheme="http://code.mrwaite.cn/tags/nodejs/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Nodejs:module.exports 与 exports的区别</title>
+    <link href="http://code.mrwaite.cn/2016/07/21/Nodejs-module-exports-%E4%B8%8E-exports%E7%9A%84%E5%8C%BA%E5%88%AB/"/>
+    <id>http://code.mrwaite.cn/2016/07/21/Nodejs-module-exports-与-exports的区别/</id>
+    <published>2016-07-21T12:58:29.000Z</published>
+    <updated>2016-07-30T04:44:51.715Z</updated>
+    
+    <content type="html"><![CDATA[<p>在讲Nodejs中module.exports 与 exports 的区别之前，我想先说说Nodejs的模块是如何加载的。<br></p>
+<p>首先，如果你使用 <code>nodejs xxx.js</code> 运行js文件的时候看过用调试工具（ex: <code>node-supervisor</code> ）查看过node<strong>编译</strong>之后的文件，你会发现在最上方<code>require</code>加载模块的地方，会出现这样的匿名函数：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">(<span class="function"><span class="keyword">function</span> (<span class="params">exports, require, module, __filename, __dirname</span>) </span>&#123;</div><div class="line">       <span class="keyword">var</span> cheerio = <span class="built_in">require</span>(<span class="string">'cheerio'</span>);</div><div class="line"> &#125;);</div></pre></td></tr></table></figure>
+<a id="more"></a>
+<p><br></p>
+<p>这是Nodejs在编译js文件的过程中有对js文件的头部包装。之后会传入 <code>module.exports</code> , <code>require</code> 方法， <code>module</code> , 文件名，目录名作为参数并执行。<br><br><br>这个时候我就想到了，在express的app.js中时常会出现这样的 <code>path.join(__dirname, &#39;views&#39;）</code>，设置 <code>__dirname</code> 的语句。还有就是为什么js文件里面没有定义require函数，但是可以调用的原因。<br><strong>那在函数里面到底是怎么执行的，才会出现这样的匿名函数？</strong>   </p>
+<ol>
+<li>Nodejs通过 <code>startup</code> 方法初始化</li>
+<li>进入 <code>Module.runMain</code> 方法</li>
+<li><code>runMain</code> 方法中，执行 <code>Module.__load</code> (参数里面指向所需加载的js文件)</li>
+<li>在 <code>__load</code> 方法里面会执行 <code>Module.__extensions[extension](this, filename)</code> ,来根据文件名的后缀调用具体的解析方式</li>
+<li>在 <code>__extensions</code> 方法里面会读取js文件的内容并通过<code>Module.__compile</code>方法编译</li>
+<li><strong>重点</strong>在 <code>__compile</code> 方法里面会执行： <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> dirname = path.dirname(filename);</div><div class="line"> 	<span class="keyword">const</span> <span class="built_in">require</span> = internalModule.makeRequireFunction.call(<span class="keyword">this</span>);</div><div class="line"> 	<span class="keyword">const</span> args = [<span class="keyword">this</span>.exports, <span class="built_in">require</span>, <span class="keyword">this</span>.filename, dirname];</div><div class="line"> 	<span class="keyword">return</span> compiledWrapper.apply(<span class="keyword">this</span>.exports, args);</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>所以会读取 <code>dirname</code>，<code>require</code>，并把this.exports等一系列变量作为参数返回。   </p>
+<h2 id="回归正题"><a href="#回归正题" class="headerlink" title="回归正题"></a>回归正题</h2><p>在上面我们可以很明确的看到module.exports会作为匿名函数的参数，事实上requir()返回的是 <code>module.exports</code> 而不是 <code>exports</code>, 而且 <code>exports</code> 只是指向 <code>module.exports</code> 的引用。  </p>
+<p>所以：</p>
+<h3 id="我们这样写是可行的："><a href="#我们这样写是可行的：" class="headerlink" title="我们这样写是可行的："></a>我们这样写是可行的：</h3><p><strong>exports:</strong><br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">exports.area = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">   <span class="keyword">return</span> <span class="literal">true</span>;</div><div class="line"> &#125;</div></pre></td></tr></table></figure></p>
+<p><strong>module.exports:</strong><br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	<span class="keyword">return</span> <span class="literal">true</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="但是这样写是不行的"><a href="#但是这样写是不行的" class="headerlink" title="但是这样写是不行的"></a>但是这样写是不行的</h3><p><strong>exports:</strong><br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">exports = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	<span class="keyword">return</span> <span class="literal">true</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="原因："><a href="#原因：" class="headerlink" title="原因："></a>原因：</h3><p>因为<code>exports</code> 只是指向 <code>module.exports</code> 的引用,就是 <code>exports</code> 和 <code>module.exports</code> 指向的是同一块内存。上面的第一个例子，只是对于 <code>exports</code> 指向的内存上面的area方法做了修改，指向关系没有变化。上面第二个例子是对 <code>exports</code> 的指向关系做了修改，指向了一块新的内存。那么， <code>exports</code> 和 <code>module.exports</code> 两者的关系就被切断了。 那么因为 <code>require()</code> 取的还是 <code>module.exports</code> ，所以按照第二个例子定义模块向外暴露的接口就有问题。</p>
+<h3 id="如果你还是对exports有种“畸形”的热爱：）"><a href="#如果你还是对exports有种“畸形”的热爱：）" class="headerlink" title="如果你还是对exports有种“畸形”的热爱：）"></a>如果你还是对exports有种“畸形”的热爱：）</h3><p>那么可以用下面这种<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">exports = <span class="built_in">module</span>.exports = somethings；</div></pre></td></tr></table></figure></p>
+<p><strong>槽点</strong>：既然都这么写了，用 <code>exports</code> 不就是多此一举吗！</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;在讲Nodejs中module.exports 与 exports 的区别之前，我想先说说Nodejs的模块是如何加载的。&lt;/br&gt;&lt;/p&gt;
+&lt;p&gt;首先，如果你使用 &lt;code&gt;nodejs xxx.js&lt;/code&gt; 运行js文件的时候看过用调试工具（ex: &lt;code&gt;node-supervisor&lt;/code&gt; ）查看过node&lt;strong&gt;编译&lt;/strong&gt;之后的文件，你会发现在最上方&lt;code&gt;require&lt;/code&gt;加载模块的地方，会出现这样的匿名函数：&lt;/p&gt;
+&lt;figure class=&quot;highlight js&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;(&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;function&lt;/span&gt; (&lt;span class=&quot;params&quot;&gt;exports, require, module, __filename, __dirname&lt;/span&gt;) &lt;/span&gt;&amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;       &lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; cheerio = &lt;span class=&quot;built_in&quot;&gt;require&lt;/span&gt;(&lt;span class=&quot;string&quot;&gt;&#39;cheerio&#39;&lt;/span&gt;);&lt;/div&gt;&lt;div class=&quot;line&quot;&gt; &amp;#125;);&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+    
+    </summary>
+    
+    
+      <category term="Nodejs" scheme="http://code.mrwaite.cn/tags/Nodejs/"/>
+    
+  </entry>
+  
+</feed>

@@ -1,0 +1,47 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> Sass学习 · Mrwaite`s Blog</title><meta name="description" content="Sass学习 - Mrwaite"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="short icon" href="/favicon.png"><link rel="stylesheet" href="/css/apollo.css"><link rel="search" type="application/opensearchdescription+xml" href="http://code.mrwaite.cn/atom.xml" title="Mrwaite`s Blog"></head><body><div class="wrap"><header><a href="/" class="logo-link"><img src="/favicon.png"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">BLOG</a></li><li class="nav-list-item"><a href="/archives/" target="_self" class="nav-list-link">ARCHIVE</a></li><li class="nav-list-item"><a href="http://weibo.com/sunchongsheng" target="_blank" class="nav-list-link">WEIBO</a></li><li class="nav-list-item"><a href="https://github.com/pinggod" target="_blank" class="nav-list-link">GITHUB</a></li><li class="nav-list-item"><a href="/atom.xml" target="_self" class="nav-list-link">RSS</a></li></ul></header><section class="container"><div class="post"><article class="post-block"><h1 class="post-title">Sass学习</h1><div class="post-info">2016年8月13日</div><div class="post-content"><div class="note info"><h2 id="使用变量">使用变量</h2></div>
+
+<blockquote>
+<p><code>$</code>声明的变量是有块级作用域的</p>
+<p><code>Sass</code>的变量名可以与css中的属性名和选择器名称相同</p>
+<p>中划线或下划线这两种用法相互兼容</p>
+</blockquote>
+<div class="note info"><h2 id="嵌套css规则">嵌套css规则</h2></div>
+
+<blockquote>
+<p><code>Sass</code>会把父选择器放在子选择器前面，形成一条一条规则（但是这样的方案，根据css样式从右到左解析来说，效率不太好）</p>
+<p><code>Sass</code>也有<code>@import</code>的功能，但是<code>Sass</code>是在<code>Sass</code>文件编译成<code>css</code>文件的时候就已经导入了，而且导入的文件是全局变量都可以使用</p>
+<p>可以在选择器里面嵌套导入</p>
+</blockquote>
+<a id="more"></a>
+<div class="note info"><h2 id="注释">注释</h2></div>
+
+<blockquote>
+<p>单行编译时注释会被忽略，多行不会。</p>
+</blockquote>
+<div class="note info"><h2 id="混合器">混合器</h2></div>
+
+<blockquote>
+<p>判断一组代码是否可以组成一个混合器，一条经验法则就是你能否为这个混合器相处一个好名字</p>
+<p><code>css</code>类是对于<code>html</code>当中语义化的功能模块的描述，而混合器是对于<code>css</code>中最终呈现的样式效果的描述</p>
+<p>混合器可以和函数一样传递参数，并且做一系列的分支循环判断</p>
+</blockquote>
+<p>混合器的实参的表示可以是这样的，不用考虑顺序的影响：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">@mixin link-colors($normal, $hover, $visited) &#123;</div><div class="line">  color: $normal;</div><div class="line">  &amp;:hover &#123; color: $hover; &#125;</div><div class="line">  &amp;:visited &#123; color: $visited; &#125;</div><div class="line">&#125;</div><div class="line">a &#123;</div><div class="line">    @include link-colors(</div><div class="line">      $normal: blue,</div><div class="line">      $visited: green,</div><div class="line">      $hover: red</div><div class="line">  );</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p> 也可以这样展示默认的参数：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">@mixin link-colors(</div><div class="line">    $normal,</div><div class="line">    $hover: $normal,</div><div class="line">    $visited: $normal</div><div class="line">  )</div><div class="line">&#123;</div><div class="line">  color: $normal;</div><div class="line">  &amp;:hover &#123; color: $hover; &#125;</div><div class="line">  &amp;:visited &#123; color: $visited; &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><div class="note info"><h2 id="继承">继承</h2></div><br>example :<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line">.error &#123;</div><div class="line">  border : 1px red;</div><div class="line">  background : #fdd;</div><div class="line">&#125;</div><div class="line"></div><div class="line">.error a &#123;</div><div class="line">  list-style-type: none;</div><div class="line">&#125;</div><div class="line"></div><div class="line">h1.error &#123;</div><div class="line">  color : red;</div><div class="line">&#125;</div><div class="line"></div><div class="line">.seriousError &#123;</div><div class="line">  @extend .error;</div><div class="line">  border-width : 3px;</div><div class="line">&#125;</div><div class="line"></div><div class="line">======&gt;</div><div class="line"></div><div class="line">.error, .seriousError &#123;</div><div class="line">  border: 1px red;</div><div class="line">  background: #fdd; &#125;</div><div class="line"></div><div class="line">.error a, .seriousError a &#123;</div><div class="line">  list-style-type: none; &#125;</div><div class="line"></div><div class="line">h1.error, h1.seriousError &#123;</div><div class="line">  color: red; &#125;</div><div class="line"></div><div class="line">.seriousError &#123;</div><div class="line">  border-width: 3px; &#125;</div></pre></td></tr></table></figure></p>
+<blockquote>
+<p>从上面就可以看出extand是怎么运行的，这时候就需要考虑如果前后样式冲突的时候怎么判断权重</p>
+</blockquote>
+<h3 id="继承的使用场景"><a href="#继承的使用场景" class="headerlink" title="继承的使用场景"></a>继承的使用场景</h3><p>你发现你的某个类（比如说.seriousError）另一个类（比如说.error）的细化。你会怎么做？</p>
+<ol>
+<li>可以为这两个类分别写相同的样式，但是如果有大量的重复怎么办？使用sass时提倡的就是不要做重复的工作。</li>
+<li>可以使用一个选择器组（比如说.error.seriousError）给这两个选择器写相同的样式。如果.error的所有样式都在同一个地方，这种做法很好，但是如果是分散在样式表的不同地方呢？再这样做就困难多了。</li>
+<li>你可以使用一个混合器为这两个类提供相同的样式，但当.error的样式修饰遍布样式表中各处时，这种做法面临着跟使用选择器组一样的问题。这两个类也不是恰好有相同的 样式。你应该更清晰地表达这种关系。</li>
+<li>综上所述应该使用@extend。让.seriousError从.error继承样式，使两者之间的关系非常清晰。更重要的是无论你在样式表的哪里使用.error``.seriousError都会继承其中的样式。</li>
+</ol>
+<h3 id="继承的工作细节"><a href="#继承的工作细节" class="headerlink" title="继承的工作细节"></a>继承的工作细节</h3><ol>
+<li>继承重复的是选择器，但是混合器重复的是属性，继承的代码量更少一点</li>
+<li>就是我上面说的继承之后可能要是会有冲突，看权重就好了</li>
+</ol>
+<h3 id="使用时注意的"><a href="#使用时注意的" class="headerlink" title="使用时注意的"></a>使用时注意的</h3><p>继承中不要使用后代选择器</p>
+</div></article></div></section><footer><div class="paginator"><a href="/2016/09/25/Gulp/" class="prev">PREV</a><a href="/2016/08/10/读JavaScript语言精粹收获/" class="next">NEXT</a></div><div class="copyright"><p>© 2015 - 2016 <a href="http://code.mrwaite.cn">Mrwaite</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/pinggod/hexo-theme-apollo" target="_blank">hexo-theme-apollo</a>.</p></div></footer></div><script async src="//cdn.bootcss.com/mathjax/2.6.1/MathJax.js?config=TeX-MML-AM_CHTML"></script><script>(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;e=o.createElement(i);r=o.getElementsByTagName(i)[0];e.src='//www.google-analytics.com/analytics.js';r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));ga('create',"UA-65933410-1",'auto');ga('send','pageview');</script></body></html>
