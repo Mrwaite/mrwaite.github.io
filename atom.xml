@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://code.mrwaite.cn/"/>
-  <updated>2016-11-21T13:47:48.025Z</updated>
+  <updated>2016-11-21T13:51:38.038Z</updated>
   <id>http://code.mrwaite.cn/</id>
   
   <author>
@@ -17,27 +17,14 @@
   
   <entry>
     <title>纳新之后的一些收获</title>
-    <link href="http://code.mrwaite.cn/2016/11/21/%E7%BA%B3%E6%96%B0%E4%B9%8B%E5%90%8E%E7%9A%84%E4%B8%80%E4%BA%9B%E6%94%B6%E8%8E%B7-1/"/>
-    <id>http://code.mrwaite.cn/2016/11/21/纳新之后的一些收获-1/</id>
-    <published>2016-11-21T13:47:48.000Z</published>
-    <updated>2016-11-21T13:47:48.025Z</updated>
-    
-    <summary type="html">
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>纳新之后的一些收获</title>
     <link href="http://code.mrwaite.cn/2016/11/21/%E7%BA%B3%E6%96%B0%E4%B9%8B%E5%90%8E%E7%9A%84%E4%B8%80%E4%BA%9B%E6%94%B6%E8%8E%B7/"/>
     <id>http://code.mrwaite.cn/2016/11/21/纳新之后的一些收获/</id>
     <published>2016-11-21T13:47:28.000Z</published>
-    <updated>2016-11-21T13:48:42.662Z</updated>
+    <updated>2016-11-21T13:51:38.038Z</updated>
     
     <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>已经将近两个月没有更新博客的内容了.前面一个月是因为接到学校的宣传部网站的更新的任务(巨坑,对于自己的学习没有什么帮助,领导要求还多变,吐槽的就不多说了!),之后的一个月就是我所在的协会一年中最最重要的事,纳新.然后准备阶段前端组当然是最忙的了.我负责了纳新报名通道前后端,H5宣传页面,机考系统后端的开发.</p>
 <p>下面是我在纳新当中自己总结的一些收获吧.</p>
+<a id="more"></a>
 <h2 id="技术方面"><a href="#技术方面" class="headerlink" title="技术方面"></a>技术方面</h2><ul>
 <li>数据库的一些列的设置上,比如说男女,或者方向,可以就用<code>象征值</code>比如1 2 3等来表示.这样既可以节省存储的空间,而且就算是象征的含义改变了,代码方面改动很小.</li>
 <li>nodejs安装npm依赖,还是<code>npm install</code>靠谱.<code>cnpm</code>因为更新时间等一些问题可能丢失一些依赖,导致nodejs进程崩溃.这个情况就在报名通道上线的时候发生过.</li>
@@ -63,7 +50,8 @@
     
     <summary type="html">
     
-      &lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;已经将近两个月没有更新博客的内容了.前面一个月是因为接到学校的宣传部网站的更新的任务(巨坑,对于自己的学习没有什么帮助,领导要求还多变,吐槽
+      &lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;已经将近两个月没有更新博客的内容了.前面一个月是因为接到学校的宣传部网站的更新的任务(巨坑,对于自己的学习没有什么帮助,领导要求还多变,吐槽的就不多说了!),之后的一个月就是我所在的协会一年中最最重要的事,纳新.然后准备阶段前端组当然是最忙的了.我负责了纳新报名通道前后端,H5宣传页面,机考系统后端的开发.&lt;/p&gt;
+&lt;p&gt;下面是我在纳新当中自己总结的一些收获吧.&lt;/p&gt;
     
     </summary>
     
