@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://code.mrwaite.cn/"/>
-  <updated>2016-11-21T13:51:38.038Z</updated>
+  <updated>2016-11-21T13:55:59.364Z</updated>
   <id>http://code.mrwaite.cn/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://code.mrwaite.cn/2016/11/21/%E7%BA%B3%E6%96%B0%E4%B9%8B%E5%90%8E%E7%9A%84%E4%B8%80%E4%BA%9B%E6%94%B6%E8%8E%B7/"/>
     <id>http://code.mrwaite.cn/2016/11/21/纳新之后的一些收获/</id>
     <published>2016-11-21T13:47:28.000Z</published>
-    <updated>2016-11-21T13:51:38.038Z</updated>
+    <updated>2016-11-21T13:55:59.364Z</updated>
     
     <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>已经将近两个月没有更新博客的内容了.前面一个月是因为接到学校的宣传部网站的更新的任务(巨坑,对于自己的学习没有什么帮助,领导要求还多变,吐槽的就不多说了!),之后的一个月就是我所在的协会一年中最最重要的事,纳新.然后准备阶段前端组当然是最忙的了.我负责了纳新报名通道前后端,H5宣传页面,机考系统后端的开发.</p>
 <p>下面是我在纳新当中自己总结的一些收获吧.</p>
@@ -39,13 +39,18 @@
 <p>但是单纯的服务器端渲染也有问题，就是无法重新渲染。</p>
 <p>解决的办法是，既使用服务器端渲染，也使用客户端渲染。让后端渲染一部分（比如首屏部分），后面的工作就交给前端异步去处理。两者结合起来效果才是最佳的。</p>
 </blockquote>
+<p>响应式方面:</p>
+<blockquote>
+<p>PC 端不做自适应了，都是 1060 吧<br>@content-width-small: 1060px;<br>@content-width-middle: 1060px;<br>@content-width-large: 1060px;</p>
+<p>@phone: ~”only screen and (max-width: 767px)”;<br>@middle: ~”only screen and (min-width: 1140px) and (max-width: 1440px)”;<br>@large: ~”only screen and (min-width: 1440px)”;</p>
+</blockquote>
 <h2 id="非技术方面"><a href="#非技术方面" class="headerlink" title="非技术方面"></a>非技术方面</h2><ul>
 <li>这次纳新准备阶段最失败的是任务的分配问题.按照大贺学长的话就是没有一个leader来指派任务,导致有些人的任务量很大完成情况不好,有些人手上没有分配到任务.</li>
 <li>纵然之前做了很多准备,在宣讲会现场还是状况百出,这时候临场的指挥能力就显得尤为重要!</li>
 <li>宣讲会现场,我的临场发挥还是紧张了!!尴尬..</li>
 <li>最近的一个月也发生了好多事,大学在实验室待了一年多了,感觉有时候自己的社交圈太小了.和人交流的有点少.但是想想有收获就会有所牺牲吧.纳新也结束了,我们这帮大三离开实验室也要提上日程了,实验室确实给了我很多,所以也是心存感激.</li>
 </ul>
-<h2 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h2><p><a href="https://github.com/DoubleSpout/threadAndPackage/blob/master/chapter.7.thread_and_process.md" target="_blank" rel="external">Node.js的线程和进程</a><br><a href="http://blog.csdn.net/miltonzhong/article/details/9159481" target="_blank" rel="external"> mysql出现大量sleep进程的原因与解决方案</a><br><a href="https://segmentfault.com/a/1190000004259905" target="_blank" rel="external">记一次 MySQL 数据库问题排查</a><br>[<a href="http://www.cnblogs.com/rubylouvre/p/4128500.html" target="_blank" rel="external">转 谈谈前端渲染 VS 后端渲染</a><br><a href="http://yijiebuyi.com/blog/2ba090a3835d430726c922753b60b2ee.html" target="_blank" rel="external">node.js 和 nginx 配合实现 gzip 压缩,让网站浏览更顺畅</a><br><a href="http://blog.sina.com.cn/s/blog_68b56adb0100v9qt.html" target="_blank" rel="external">mysql插入数字都变成2147483647的解决方法 </a></p>
+<h2 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h2><p><a href="https://github.com/DoubleSpout/threadAndPackage/blob/master/chapter.7.thread_and_process.md" target="_blank" rel="external">Node.js的线程和进程</a><br><a href="http://blog.csdn.net/miltonzhong/article/details/9159481" target="_blank" rel="external"> mysql出现大量sleep进程的原因与解决方案</a><br><a href="https://segmentfault.com/a/1190000004259905" target="_blank" rel="external">记一次 MySQL 数据库问题排查</a><br><a href="http://www.cnblogs.com/rubylouvre/p/4128500.html" target="_blank" rel="external"> 转 谈谈前端渲染 VS 后端渲染</a><br><a href="http://yijiebuyi.com/blog/2ba090a3835d430726c922753b60b2ee.html" target="_blank" rel="external">node.js 和 nginx 配合实现 gzip 压缩,让网站浏览更顺畅</a><br><a href="http://blog.sina.com.cn/s/blog_68b56adb0100v9qt.html" target="_blank" rel="external">mysql插入数字都变成2147483647的解决方法 </a></p>
 ]]></content>
     
     <summary type="html">
