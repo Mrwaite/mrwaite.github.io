@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://code.mrwaite.cn/"/>
-  <updated>2016-12-23T15:32:06.708Z</updated>
+  <updated>2016-12-23T15:52:14.250Z</updated>
   <id>http://code.mrwaite.cn/</id>
   
   <author>
@@ -20,9 +20,9 @@
     <link href="http://code.mrwaite.cn/2016/12/23/%E8%AF%91-%E5%89%8D%E7%AB%AF2017%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E6%B8%85%E5%8D%95/"/>
     <id>http://code.mrwaite.cn/2016/12/23/译-前端2017性能优化清单/</id>
     <published>2016-12-23T15:27:16.000Z</published>
-    <updated>2016-12-23T15:32:06.708Z</updated>
+    <updated>2016-12-23T15:52:14.250Z</updated>
     
-    <content type="html"><![CDATA[<p>By Vitaly Friedman<br>译 陈威特</p>
+    <content type="html"><![CDATA[<p><a href="https://www.smashingmagazine.com/2016/12/front-end-performance-checklist-2017-pdf-pages/" target="_blank" rel="external">原文</a><br>By Vitaly Friedman<br>译 陈威特</p>
 <p>你已经在使用渐进式启动了吗？那么React 和 Angular中的<code>tree-shaking</code>和<code>code-splitting</code>呢？你是否设置了 <a href="https://zh.wikipedia.org/wiki/Brotli" target="_blank" rel="external">Brotli</a> 或  <a href="https://zh.wikipedia.org/wiki/Zopfli" target="_blank" rel="external">Zopfli</a> 压缩,   <a href="https://zh.wikipedia.org/wiki/OCSP%E8%A3%85%E8%AE%A2" target="_blank" rel="external">OCSP</a> stapling,  <a href="https://http2.github.io/http2-spec/compression.html" target="_blank" rel="external">HPACK</a> 压缩呢？ 那么 <a href="https://www.keycdn.com/blog/resource-hints/" target="_blank" rel="external">Resource Hints</a>,  <a href="http://httpwg.org/http-extensions/client-hints.html" target="_blank" rel="external">Client Hints</a> 和 <a href="https://developers.google.com/web/updates/2016/06/css-containment" target="_blank" rel="external">CSS Containment </a> 呢？就更不用说 IPV6, HTTP/2,  <a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Service_Worker_API" target="_blank" rel="external">Server Workers</a> 了。</p>
 <p>早些时候，性能问题往往都是项目完成之后考虑的。经常被推迟到项目末期，它将会被归结为压缩， 合并， 资源优化以及对服务器的一些配置文件做细微的调整。<br>现在回头想想， 事情似乎已经发生了很大的变化。</p>
 <p>性能并不只是技术上的考量，重要的是，当其融入到工作流当中时，设计理念往往通过性能的优劣来更好的展现。性能必须持续的测试，监控，优化。日益复杂的 Web 环境给我们带来了新的挑战，我们非常困难去检测具体的性能指标，因为性能指标的检测是非常依赖于终端设备， 浏览器，协议，网络类型以及潜在的一些东西（CDNs， ISPs， 缓存， 代理，防火墙，负载均衡和服务器，它们都在性能问题上扮演非常重要的角色）。</p>
@@ -131,7 +131,7 @@
     
     <summary type="html">
     
-      &lt;p&gt;By Vitaly Friedman&lt;br&gt;译 陈威特&lt;/p&gt;
+      &lt;p&gt;&lt;a href=&quot;https://www.smashingmagazine.com/2016/12/front-end-performance-checklist-2017-pdf-pages/&quot;&gt;原文&lt;/a&gt;&lt;br&gt;By Vitaly Friedman&lt;br&gt;译 陈威特&lt;/p&gt;
 &lt;p&gt;你已经在使用渐进式启动了吗？那么React 和 Angular中的&lt;code&gt;tree-shaking&lt;/code&gt;和&lt;code&gt;code-splitting&lt;/code&gt;呢？你是否设置了 &lt;a href=&quot;https://zh.wikipedia.org/wiki/Brotli&quot;&gt;Brotli&lt;/a&gt; 或  &lt;a href=&quot;https://zh.wikipedia.org/wiki/Zopfli&quot;&gt;Zopfli&lt;/a&gt; 压缩,   &lt;a href=&quot;https://zh.wikipedia.org/wiki/OCSP%E8%A3%85%E8%AE%A2&quot;&gt;OCSP&lt;/a&gt; stapling,  &lt;a href=&quot;https://http2.github.io/http2-spec/compression.html&quot;&gt;HPACK&lt;/a&gt; 压缩呢？ 那么 &lt;a href=&quot;https://www.keycdn.com/blog/resource-hints/&quot;&gt;Resource Hints&lt;/a&gt;,  &lt;a href=&quot;http://httpwg.org/http-extensions/client-hints.html&quot;&gt;Client Hints&lt;/a&gt; 和 &lt;a href=&quot;https://developers.google.com/web/updates/2016/06/css-containment&quot;&gt;CSS Containment &lt;/a&gt; 呢？就更不用说 IPV6, HTTP/2,  &lt;a href=&quot;https://developer.mozilla.org/zh-CN/docs/Web/API/Service_Worker_API&quot;&gt;Server Workers&lt;/a&gt; 了。&lt;/p&gt;
 &lt;p&gt;早些时候，性能问题往往都是项目完成之后考虑的。经常被推迟到项目末期，它将会被归结为压缩， 合并， 资源优化以及对服务器的一些配置文件做细微的调整。&lt;br&gt;现在回头想想， 事情似乎已经发生了很大的变化。&lt;/p&gt;
 &lt;p&gt;性能并不只是技术上的考量，重要的是，当其融入到工作流当中时，设计理念往往通过性能的优劣来更好的展现。性能必须持续的测试，监控，优化。日益复杂的 Web 环境给我们带来了新的挑战，我们非常困难去检测具体的性能指标，因为性能指标的检测是非常依赖于终端设备， 浏览器，协议，网络类型以及潜在的一些东西（CDNs， ISPs， 缓存， 代理，防火墙，负载均衡和服务器，它们都在性能问题上扮演非常重要的角色）。&lt;/p&gt;
