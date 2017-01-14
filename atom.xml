@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://code.mrwaite.cn/"/>
-  <updated>2017-01-14T02:57:25.099Z</updated>
+  <updated>2017-01-14T02:59:56.289Z</updated>
   <id>http://code.mrwaite.cn/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://code.mrwaite.cn/2017/01/13/%E8%BF%9F%E6%9D%A5%E7%9A%84Vuejs%E7%BB%84%E4%BB%B6%E5%8C%96%E5%AE%9E%E8%B7%B5%E6%80%BB%E7%BB%93/"/>
     <id>http://code.mrwaite.cn/2017/01/13/迟来的Vuejs组件化实践总结/</id>
     <published>2017-01-13T14:00:35.000Z</published>
-    <updated>2017-01-14T02:57:25.099Z</updated>
+    <updated>2017-01-14T02:59:56.289Z</updated>
     
     <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>开始接触Vuejs是在2016年国庆的时候,正好赶上1.0过渡到2.0,也开始了正式的组件化编程.下面我做的简单的多人博客平台是期末考时候就差不多完成的,然后因为时间问题拖到现在才写下这篇总结,效果已经大打折扣…</p>
 <h3 id="技术栈"><a href="#技术栈" class="headerlink" title="技术栈"></a>技术栈</h3><p><strong>前端</strong> : Vuejs + Vuex + Vue-resource + Vue-router + Sass + webpack + ES6</p>
@@ -71,7 +71,7 @@
 </ol>
 <p>后端加上<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">app.all(&apos;*&apos;,function (req, res, next) &#123;</div><div class="line">  res.header(&apos;Access-Control-Allow-Origin&apos;, &apos;http://localhost:8080&apos;);</div><div class="line">  res.header(&apos;Access-Control-Allow-Headers&apos;, &apos;Content-Type, Content-Length, Authorization, Accept, X-Requested-With , yourHeaderFeild&apos;);</div><div class="line">  res.header(&apos;Access-Control-Allow-Methods&apos;, &apos;PUT, POST, GET, DELETE, OPTIONS&apos;);</div><div class="line">  res.header(&apos;Access-Control-Allow-Credentials&apos;, &apos;true&apos;);</div><div class="line"></div><div class="line">  if (req.method == &apos;OPTIONS&apos;) &#123;</div><div class="line">    res.sendStatus(200);</div><div class="line">  &#125;</div><div class="line">  else &#123;</div><div class="line">    next();</div><div class="line">  &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
 <p>本来用node-inspector来调试后端Nodejs,但是除了一些问题之后发现官方已经许久没有更新该工具了,偶然间看到这个调试Nodejs的方法@<a href="https://gold.xitu.io/entry/58005ab4128fe1005493b422" target="_blank" rel="external"><br>使用 Chrome 直接、并行调试 Node.js 及 JavaScript</a></p>
-<p>###思考<br>如何划分组件比较合理?</p>
+<h3 id="思考"><a href="#思考" class="headerlink" title="思考"></a>思考</h3><p>如何划分组件比较合理?</p>
 ]]></content>
     
     <summary type="html">
