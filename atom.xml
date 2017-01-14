@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://code.mrwaite.cn/"/>
-  <updated>2017-01-14T02:44:13.701Z</updated>
+  <updated>2017-01-14T02:57:25.099Z</updated>
   <id>http://code.mrwaite.cn/</id>
   
   <author>
@@ -20,16 +20,16 @@
     <link href="http://code.mrwaite.cn/2017/01/13/%E8%BF%9F%E6%9D%A5%E7%9A%84Vuejs%E7%BB%84%E4%BB%B6%E5%8C%96%E5%AE%9E%E8%B7%B5%E6%80%BB%E7%BB%93/"/>
     <id>http://code.mrwaite.cn/2017/01/13/迟来的Vuejs组件化实践总结/</id>
     <published>2017-01-13T14:00:35.000Z</published>
-    <updated>2017-01-14T02:44:13.701Z</updated>
+    <updated>2017-01-14T02:57:25.099Z</updated>
     
     <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>开始接触Vuejs是在2016年国庆的时候,正好赶上1.0过渡到2.0,也开始了正式的组件化编程.下面我做的简单的多人博客平台是期末考时候就差不多完成的,然后因为时间问题拖到现在才写下这篇总结,效果已经大打折扣…</p>
 <h3 id="技术栈"><a href="#技术栈" class="headerlink" title="技术栈"></a>技术栈</h3><p><strong>前端</strong> : Vuejs + Vuex + Vue-resource + Vue-router + Sass + webpack + ES6</p>
 <p><strong>后端</strong> : Nodejs + Express + MongoDB</p>
 <a id="more"></a>
 <h3 id="具体细节"><a href="#具体细节" class="headerlink" title="具体细节"></a>具体细节</h3><p><strong>目录结构</strong></p>
-<p>前端：<br><img src="./1484311184876.png" alt="Alt text"></p>
+<p>前端：<br><img src="http://ojr16of5n.bkt.clouddn.com/front-end.png" alt="front-end"></p>
 <p>api: 负责前端与后端的HTTP请求部分（使用Vue-resource）<br>components: 公共组件<br>filter: Vuejs 2.0 移除过滤器之后相应的过滤器文件<br>public: 静态资源文件夹<br>router: Vue-router 前端路由文件<br>store: Vuex 存放组件状态<br>views: 页面组件<br>App.vue: 页面入口组件<br>main.js: 程序入口文件,加载路由,公共组件,组件状态</p>
-<p>后端：<br><img src="./1484310479208.png" alt="Back-End"></p>
+<p>后端：<br><img src="http://ojr16of5n.bkt.clouddn.com/back-end.png" alt="Back-End"></p>
 <p>bin: express的入口文件<br>config: 配置文件(数据库配置文件)<br>dao: 数据库操作<br>models: 抽象出来的模块(comment模块, post模块, user模块<br>nodes_modules: NPM包<br>public: 静态资源文件<br>router: 路由<br>views: 页面(无用)<br>app.js: express程序入口文件<br>packages.json: npm</p>
 <p><strong>技术实现</strong></p>
 <p>具体实现的功能:</p>
