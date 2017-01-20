@@ -1,0 +1,185 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> 寒假前端基础总结 · Mrwaite`s Blog</title><meta name="description" content="寒假前端基础总结 - Mrwaite"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="short icon" href="/favicon.png"><link rel="stylesheet" href="/css/apollo.css"><link rel="search" type="application/opensearchdescription+xml" href="http://code.mrwaite.cn/atom.xml" title="Mrwaite`s Blog"></head><body><div class="wrap"><header><a href="/" class="logo-link"><img src="/favicon.png"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">BLOG</a></li><li class="nav-list-item"><a href="/archives/" target="_self" class="nav-list-link">ARCHIVE</a></li><li class="nav-list-item"><a href="http://weibo.com/mrwaite" target="_blank" class="nav-list-link">WEIBO</a></li><li class="nav-list-item"><a href="https://github.com/mrwaite" target="_blank" class="nav-list-link">GITHUB</a></li><li class="nav-list-item"><a href="/atom.xml" target="_self" class="nav-list-link">RSS</a></li></ul></header><section class="container"><div class="post"><article class="post-block"><h1 class="post-title">寒假前端基础总结</h1><div class="post-info">2017年1月20日</div><div class="post-content"><p>先按照leo给的前端知识脑图开始</p>
+<h3 id="HTML"><a href="#HTML" class="headerlink" title="HTML"></a>HTML</h3><h4 id="语义化"><a href="#语义化" class="headerlink" title="语义化"></a>语义化</h4><ol>
+<li>去除或丢失样式的时候能让页面呈现清晰的结构</li>
+<li>有利于SEO: 有利于爬虫爬取更多的有效信息,爬虫依赖于标签来确定上下文和关键字的权重</li>
+<li>方便其他设备解析(屏幕阅读器, 盲人阅读器, 移动设备), 有利于无障碍阅读(通常因为这些设备对css的支持较弱)</li>
+<li>方便团队开发维护代码, 语义化更具有可读性, 遵循W3C标砖, 减少差异化</li>
+</ol>
+<p>阻止兼容模式</p>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<a id="more"></a>
+<p>@<a href="http://www.css88.com/archives/1668" target="_blank" rel="external">语义化的HTML结构到底有什么好处？</a></p>
+<p>@<a href="https://segmentfault.com/a/1190000004553994" target="_blank" rel="external">Web语义化标准解读</a><br>当CSS命名语义化和CSS代码复用冲突的时候,Sass就是比较好的解决方案</p>
+<p>不单单是HTML的语义化,还有CSS命名的语义化.<br>CSS命名语义化应当注意:</p>
+<ul>
+<li>尽量规避拼音命名，用英文单词去命名</li>
+<li>单词之间连接用三种方式：下划线_  、间隔符-、驼峰命名。具体使用哪种方式请根据团队的规范，但个人建议不要同时使用2种以上的连接方法同时命名</li>
+<li>单词后不要跟无意义的数字，如logo1234  (团队约定好的除外)</li>
+<li>对于过长单词的连接命名可采取缩写形式，但应确保成员都能看懂</li>
+</ul>
+<p>SEO还要牵扯到服务器端渲染和客户端渲染!</p>
+<h4 id="Doctype"><a href="#Doctype" class="headerlink" title="Doctype"></a>Doctype</h4><ol>
+<li>声明位于文档首,告知浏览器以哪种形式解析文档</li>
+<li>严格模式的排版以该浏览器支持的最高标准运行</li>
+<li>在混杂模式中,以宽松的向后兼容方式显示,模拟老式浏览器以防止站点无法运行</li>
+<li>Doctype 不存在或不正确会导致文档以混杂模式呈现</li>
+</ol>
+<p>DOCTYPE标签是一种标准通用标记语言的文档类型声明，它的目的是要告诉标准通用标记语言解析器，它应该使用什么样的文档类型定义（DTD）来解析文档</p>
+<h4 id="XHTML"><a href="#XHTML" class="headerlink" title="XHTML"></a>XHTML</h4><p><strong>HTML与XHTML区别</strong></p>
+<ol>
+<li>所有标签必须闭合</li>
+<li>所有标签的元素和属性名称都必须使用小写</li>
+<li>所有属性都必须用&lt;&gt;括起来,且属性必须赋值,没有值的就重复本身</li>
+<li>图片必须有说明文字(alt)</li>
+<li>把所有的&lt;和&gt;等特殊字符用编码表示{&lt;表示为&lt;,&gt;表示为&gt;,&amp;表示为空格}</li>
+<li>不要注释中使用&lt;–&gt;,”–”只能发生在注释的开头和结尾</li>
+</ol>
+<p><a href="https://www.zhihu.com/question/19818208" target="_blank" rel="external">HTML4，HTML5，XHTML 之间有什么区别？</a></p>
+<h4 id="HTML5新特性"><a href="#HTML5新特性" class="headerlink" title="HTML5新特性"></a>HTML5新特性</h4><p>HTML5希望能减少浏览器对于需要插件的丰富性网络应用的需求.<br>HTML5提供的一些新标签有利于搜索引擎的索引整理,小屏幕装置和视障人士的使用.</p>
+<p>让IE支持HTML5的方法:引用Google的 html5.js 文件,或者<a href="https://github.com/aFarkas/html5shiv" target="_blank" rel="external">html5shiv</a>.</p>
+<ol>
+<li>语义化标签</li>
+<li>音频视频API</li>
+<li>Canvas API</li>
+<li>地理 API</li>
+<li>本地离线存储Localstorage</li>
+<li>Session Strong</li>
+<li>表单控件</li>
+<li>内联SVG</li>
+<li>web worker</li>
+<li>Geolocation</li>
+<li>移除的标签</li>
+</ol>
+<p><strong>语义化标签</strong><br>HTML5新增的标签: </p>
+<p><article>: 定义外部的内容.引用外部文本的内容.</article></p>
+<p><audio>:定义声音,比如音乐或其他音频流</audio></p>
+<p><canvas>:定义图形,画布</canvas></p>
+<p><command>:定义命令按钮,比如单选按钮,复选按</p>
+<p><datalist>:可选数值的列表,可以做input下来的可选值</datalist></p>
+<p><embed>:定义嵌入的内容比如插件</p>
+<p><footer>: 定义页脚</footer></p>
+<p><header>:定义页眉<br><mark>:视觉上需要突出的文字</mark></header></p>
+<p><nav>: 定义导航链接部分</nav></p>
+<p><section>: 定义文档中的节,区段</section></p>
+<p><source>: 定义<br><time>:时间</time></p>
+<p><video>: 定义视频</video></p>
+<p><strong>音频视频API</strong></p>
+<p><strong>Canvas API</strong></p>
+<p><strong>地理API</strong></p>
+<p>地理位置 API 允许用户向 Web 应用程序提供他们的位置<br>geolocation对象可以获取地理位置<br>“geolocation” in navigator</p>
+<p><strong>cookie, Localstorage 与 SessionStorage区别</strong></p>
+<ul>
+<li>cookie: 包含若干键值对,每个键值对可以设置过期时间(默认过期时间为关闭浏览器时,可设置失效时间),Cookie会在每次发送HTTP请求时附加到Cookie头字段(set-cookie字段),服务器从而得知用户状态,大小限制为4kb左右,每次请求新页面的时候都会发过去,cookie还会制定作用域,不可以跨域(创建cookie时候设置domain),但是可以用jsonp来跨域得到要写的cookie键值对然后手动写入(跨域cookie,单点登录有用).<ul>
+<li>webstorage: webstorage本地存储包括两种存储方式sessionstorage和localstorage.sessionstorage不是一种持久化的本地存储,仅仅是会话级别的存储.这些数据只是在同一个会话中的页面才能访问会话结束之后数据就销毁了.localstorage用于持久化的本地存储,除非主动删除数据,否则永远不会过期.两个大小限制一般为5MB.</li>
+</ul>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">特性</th>
+<th style="text-align:left">Cookie</th>
+<th style="text-align:left">localstorage</th>
+<th style="text-align:left">sessionstorage</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">数据生命周期</td>
+<td style="text-align:left">一般由服务器生成,可设置失效时间.如果在浏览器端生成Cookie,默认是关闭浏览器后失效</td>
+<td style="text-align:left">除非被清除,否则永久保存</td>
+<td style="text-align:left">尽在当前会话下有效,关闭页面或者浏览器后被清除</td>
+</tr>
+<tr>
+<td style="text-align:left">存放数据大小</td>
+<td style="text-align:left">4kb左右</td>
+<td style="text-align:left">一般为5MB</td>
+<td style="text-align:left">一般为5MB</td>
+</tr>
+<tr>
+<td style="text-align:left">与服务器端通信</td>
+<td style="text-align:left">每次都都会携带在HTTP投中,如果用cookie来保存数据会存在性能问题</td>
+<td style="text-align:left">仅在客户端(即浏览器)中保存,不参与和服务器的通讯</td>
+<td style="text-align:left">同上</td>
+</tr>
+<tr>
+<td style="text-align:left">易用性</td>
+<td style="text-align:left">需要程序员自己封装,原生的Cookie接口不友好</td>
+<td style="text-align:left">原生的接口可以接受,也可以再次封装来对Object和Aeeary更友好</td>
+<td style="text-align:left">同上</td>
+</tr>
+</tbody>
+</table>
+<p><strong>表单控件</strong><br>新的input类型(email, URL, number, search, color, range, Ddata picker)<br><strong>内联svg</strong><br>内联SVG直接在文档中包含了所有的XML数据，并且允许我们通过CSS和Javascript来访问它们.<br><strong>web worker</strong><br>运行在后台的JavaScript,独立于其他脚本,不会影响用户的性能.<br>Web Worker为Web内容在后台线程中运行脚本提供了一种简单的方法。线程可以执行任务而不干扰用户界面<br><strong>移除的标签</strong><br>纯表现的元素:basefont, big, center, fon, tt, u<br>影响性能: frame, frameset, noframe 最耗时的</p>
+<h4 id="常见问题"><a href="#常见问题" class="headerlink" title="常见问题"></a>常见问题</h4><p><strong>文本框,阻止用户输入</strong></p>
+<ul>
+<li>input标签的disabled以及readonly属性</li>
+<li>JS捕获keypress事件, 设置input属性为disabled</li>
+</ul>
+<p><strong>行内元素</strong><br>CSS规范规定,每个元素都有display属性,每个元素都有默认的display值.<br>行内元素: br button input lable textarea span img select<br>块级元素: div ul ol li h1~h6 p<br>行内元素(内联元素):和相邻的内联元素在同一行,width等都不可以改变<br>块级元素: 总是独占一行,变现为另起一行开始,而且气候的元素必须另起一行显示,width等都可以控制.</p>
+<p>display所有属性:<br>display:none 既不现实也不占据空间(区别于visibility:visible)<br>display:inline 设置行内元素,高宽设置都无效,设置的text-align也无效<br>display:block 设置为块级元素,默认继承父元素宽度<br>display:list-item 设置为列表显示,完全模仿的话还要加上list-style-position和list-style-type<br>display:inline-block 既有block的宽高特性又有inline的同行元素属性<br>display: table 表格<br>display: flex 弹性布局,子元素的float,clear,vertical-align属性都无效</p>
+<h4 id="HTML5为什么只写-lt-DOCTYPE-HTML-gt"><a href="#HTML5为什么只写-lt-DOCTYPE-HTML-gt" class="headerlink" title="HTML5为什么只写&lt;! DOCTYPE HTML&gt;"></a>HTML5为什么只写&lt;! DOCTYPE HTML&gt;</h4><p>HTML5不基于SGML(Standard Generalized Markup Language),因此不需要对DTD进行引用,但是需要doctype来规范浏览器的行为(让浏览器按照他们应该的方式来运行);<br>而HTML4.01基于SGML,所以需要对DTD进行引用,才能告知浏览器所使用的文档类型.<br>文档类型定义(Document Type Definition)是一套为了进行程序间的数据交换而建立的关于标记符的语法规则</p>
+<h4 id="cookie-localstorage-sessionstorage-的区别"><a href="#cookie-localstorage-sessionstorage-的区别" class="headerlink" title="cookie localstorage sessionstorage 的区别"></a>cookie localstorage sessionstorage 的区别</h4><ol>
+<li>cookie会在浏览器和服务器之间来回交换,sessionstorage和localstorage不会.</li>
+<li>sessionstorage和localstorage的存储空间更大</li>
+<li>sessionstorage和localstorage有更多丰富易用的接口</li>
+<li>sessionstorage和localstorage各自独立的存储空间</li>
+</ol>
+<h3 id="CSS"><a href="#CSS" class="headerlink" title="CSS"></a>CSS</h3><h4 id="选择器"><a href="#选择器" class="headerlink" title="选择器"></a>选择器</h4><h5 id="选择器-1"><a href="#选择器-1" class="headerlink" title="选择器"></a>选择器</h5><ol>
+<li>id选择器(#)</li>
+<li>class选择器(.)</li>
+<li>标签选择器(p)</li>
+<li>后代选择器(&gt;)</li>
+<li>相邻选择器(+)</li>
+<li>子元素选择器( )</li>
+<li>通配符选择器(*)</li>
+<li>属性选择器(a[rel=”exteral”])<br>[title]{color:red}为所有带有title属性的元素设置color样式</li>
+<li>伪类选择器,顺序link-visited-hover-focus-active<br>伪元素选择器<br><img src="./1484661423925.png" alt="伪元素选择器"></li>
+</ol>
+<h5 id="优先级"><a href="#优先级" class="headerlink" title="优先级"></a>优先级</h5><p>!important &gt; id &gt; class &gt; tag<br>!importanr比内联优先级高,内联比id优先级高</p>
+<h5 id="属性继承"><a href="#属性继承" class="headerlink" title="属性继承"></a>属性继承</h5><ol>
+<li>可继承样式 : font-size, font-family, color</li>
+<li>不可继承样式 : border padding margin width height<br><a href="https://segmentfault.com/q/1010000000269211" target="_blank" rel="external">css属性继承</a></li>
+<li>优先级就近原则,同权重情况下样式定义最近者为准<br><img src="./1484662001517.png" alt="优先级"></li>
+<li>载入样式以最后载入的定位为准</li>
+</ol>
+<h5 id="ID-和-class选择器区别"><a href="#ID-和-class选择器区别" class="headerlink" title="ID 和　class选择器区别"></a>ID 和　class选择器区别</h5><p>ID选择器：　每个元素只能有唯一一个ID,每个页面只能有一个元素使用该ID<br>类选择器: 多个元素可以共用相同类,一个元素可以有多个类</p>
+<h4 id="CSS3新特性"><a href="#CSS3新特性" class="headerlink" title="CSS3新特性"></a>CSS3新特性</h4><ol>
+<li>圆角(border-radius)</li>
+<li>阴影(box-shadow)</li>
+<li>渐变(gradient)<br>使用 CSS 渐变可以在两种颜色间制造出平滑的渐变效果. 用它代替图片，可以加快页面的载入时间、减小带宽占用。同时，因为渐变是由浏览器直接生成的，它在页面缩放时的效果比图片更好，因此你可以更加灵活、便捷的调整页面布局</li>
+<li>旋转(transform) transform:rotate(9deg) scale(0.85,0.9) transslate(0px,-30px) skew(-9deg,0deg) //旋转(顺时针), 缩放, 移动, 倾斜</li>
+<li>高级选择器 .elemet:nth-child(odd){border-radius:5px} 对元素序号为奇数的子元素运用 偶数:even</li>
+<li>Webfont(@font-face)<br>TTF(TrueType Font)<br>WOFF(Web Open Font Format 1.0|2.0) 是Web字体中最佳格式,压缩<br>SVG<br>EOT(Embedded OpenType Fonts by M$) IE专用字体</li>
+<li>媒体查询<br>媒体查询包含了一个媒体类型和至少一个使用如宽度 高度和颜色等媒体属性来限制样式表范围的表达式.css3加入的媒体查询是的无需修改内容便可以使样式应用于某些特定的设备范围</li>
+<li>新增伪类举例<br><img src="./1484663558675.png" alt="Alt text"></li>
+</ol>
+<h4 id="font-family"><a href="#font-family" class="headerlink" title="font-family"></a>font-family</h4><p><strong>基础知识</strong></p>
+<ol>
+<li>优先使用排在前面的字体</li>
+<li>如果找不到该字体,或者改字体不包括所要渲染的文字,则使用下一种字体</li>
+<li>若果都找不到,就由操作系统决定使用哪种字体<br><strong>使用常识</strong></li>
+<li>永远不要忘记声明英文字体,而且英文字体应该在中文字体前面,绝大部分的中文字体包括英文字体,但是英文字体不包括中文字符</li>
+<li>照顾不同的操作系统 对Windows,Mac OS,Linux等操作系统的默认字体有了解,特别是中文</li>
+<li>注意向下兼容 为低级系统提供fallback字体方案</li>
+</ol>
+<h4 id="CSS预处理器"><a href="#CSS预处理器" class="headerlink" title="CSS预处理器"></a>CSS预处理器</h4><p>提供css缺失的样式层复用机制,减少代码的冗余,提高样式代码的可维护性</p>
+<ol>
+<li>Sass(.sass .scss): Sass的变量处理方式和Stylus相同,变量输出的根据之前最近的一次定义计算</li>
+<li>Less(.less): 变量处理方式之懒加载 Less的处理逻辑和其他两者有非常关键的区别,所有的Less变量的计算,都是以这个变量最后一次被定义的值为准</li>
+</ol>
+<p>例子就是全局变量和局部变量的时候(变量作用域)</p>
+<p>为什么Sass比Less好：</p>
+<ol>
+<li>Sass能让你写出重复利用的方法,可以用逻辑语句,条件语句和循环语句。虽然Less也可以做这些事情但是Less的方式效率比较低而且不直观。Less和Sass都内置了大量的颜色处理,数学,参数列表等方便的功能。</li>
+<li>Sass用户能够利用Compass这个非常棒的库，提供给Less用户的库虽然也多，但是远不能和Compass比,Compass定期有人维护对社会的贡献也非常大。Compass有些非常棒的功能，比如:生成动态雪碧(dynamicsprite-map ),对就浏览器有Hack功能，跨浏览器支持css3特性。</li>
+<li>Compass也能让你添加一个第三方框架比如:Blueprint ,Foundation，Bootstrap。这意味着你可以很容易的利用你喜欢的框架不需要去处理使用多个工具带来的麻烦.</li>
+</ol>
+<h4 id="CSS后处理器"><a href="#CSS后处理器" class="headerlink" title="CSS后处理器"></a>CSS后处理器</h4><p>CSS后处理器 是对CSS进行处理,并最终生成CSS的预处理器, 它属于广义上的CSS预处理器</p>
+<ol>
+<li>举例: CSS压缩工具(clean-css), Autoprefixer(以Can I Use 上的浏览器支持数据为基础, 自动处理兼容性问题)</li>
+<li>优缺: 使用CSS语法,容易进行模块化,贴近CSS未来的标准,逻辑处理能力有限</li>
+<li>框架举例:PostCSS Rework非常相似,但提供了更高级的API,更易扩展</li>
+</ol>
+</div></article></div></section><footer><div class="paginator"><a href="/2017/01/20/寒假前端基础总结-1/" class="prev">PREV</a><a href="/2017/01/13/迟来的Vuejs组件化实践总结/" class="next">NEXT</a></div><div class="copyright"><p>© 2015 - 2017 <a href="http://code.mrwaite.cn">Mrwaite</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/pinggod/hexo-theme-apollo" target="_blank">hexo-theme-apollo</a>.</p></div></footer></div><script async src="//cdn.bootcss.com/mathjax/2.6.1/MathJax.js?config=TeX-MML-AM_CHTML"></script><script>(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;e=o.createElement(i);r=o.getElementsByTagName(i)[0];e.src='//www.google-analytics.com/analytics.js';r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));ga('create',"UA-65933410-1",'auto');ga('send','pageview');</script></body></html>

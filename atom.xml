@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://code.mrwaite.cn/"/>
-  <updated>2017-01-20T07:46:56.400Z</updated>
+  <updated>2017-01-20T07:50:12.002Z</updated>
   <id>http://code.mrwaite.cn/</id>
   
   <author>
@@ -16,18 +16,27 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title></title>
-    <link href="http://code.mrwaite.cn/2017/01/20/%E5%AF%92%E5%81%87%E5%89%8D%E7%AB%AF%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/"/>
-    <id>http://code.mrwaite.cn/2017/01/20/寒假前端基础知识总结/</id>
-    <published>2017-01-20T07:46:56.436Z</published>
-    <updated>2017-01-20T07:46:56.400Z</updated>
+    <title>寒假前端基础总结</title>
+    <link href="http://code.mrwaite.cn/2017/01/20/%E5%AF%92%E5%81%87%E5%89%8D%E7%AB%AF%E5%9F%BA%E7%A1%80%E6%80%BB%E7%BB%93-1/"/>
+    <id>http://code.mrwaite.cn/2017/01/20/寒假前端基础总结-1/</id>
+    <published>2017-01-20T07:50:11.000Z</published>
+    <updated>2017-01-20T07:50:12.002Z</updated>
     
-    <content type="html"><![CDATA[<hr>
-<p>title: 寒假前端基础知识总结<br>date: 2017-01-20 15:07:36 </p>
-<h2 id="tags-FE"><a href="#tags-FE" class="headerlink" title="tags: FE "></a>tags: FE </h2><p>先按照leo给的前端知识脑图开始</p>
-<hr>
-<p>[TOC]</p>
-<hr>
+    <summary type="html">
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>寒假前端基础总结</title>
+    <link href="http://code.mrwaite.cn/2017/01/20/%E5%AF%92%E5%81%87%E5%89%8D%E7%AB%AF%E5%9F%BA%E7%A1%80%E6%80%BB%E7%BB%93/"/>
+    <id>http://code.mrwaite.cn/2017/01/20/寒假前端基础总结/</id>
+    <published>2017-01-20T07:50:07.000Z</published>
+    <updated>2017-01-20T07:51:51.115Z</updated>
+    
+    <content type="html"><![CDATA[<p>先按照leo给的前端知识脑图开始</p>
 <h3 id="HTML"><a href="#HTML" class="headerlink" title="HTML"></a>HTML</h3><h4 id="语义化"><a href="#语义化" class="headerlink" title="语义化"></a>语义化</h4><ol>
 <li>去除或丢失样式的时候能让页面呈现清晰的结构</li>
 <li>有利于SEO: 有利于爬虫爬取更多的有效信息,爬虫依赖于标签来确定上下文和关键字的权重</li>
@@ -37,6 +46,7 @@
 <p>阻止兼容模式</p>
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
+<a id="more"></a>
 <p>@<a href="http://www.css88.com/archives/1668" target="_blank" rel="external">语义化的HTML结构到底有什么好处？</a></p>
 <p>@<a href="https://segmentfault.com/a/1190000004553994" target="_blank" rel="external">Web语义化标准解读</a><br>当CSS命名语义化和CSS代码复用冲突的时候,Sass就是比较好的解决方案</p>
 <p>不单单是HTML的语义化,还有CSS命名的语义化.<br>CSS命名语义化应当注意:</p>
@@ -214,12 +224,20 @@
     
     <summary type="html">
     
-      &lt;hr&gt;
-&lt;p&gt;title: 寒假前端基础知识总结&lt;br&gt;date: 2017-01-20 15:07:36 &lt;/p&gt;
-&lt;h2 id=&quot;tags-FE&quot;&gt;&lt;a href=&quot;#tags-FE&quot; class=&quot;headerlink&quot; title=&quot;tags: FE &quot;&gt;&lt;/a&gt;tag
+      &lt;p&gt;先按照leo给的前端知识脑图开始&lt;/p&gt;
+&lt;h3 id=&quot;HTML&quot;&gt;&lt;a href=&quot;#HTML&quot; class=&quot;headerlink&quot; title=&quot;HTML&quot;&gt;&lt;/a&gt;HTML&lt;/h3&gt;&lt;h4 id=&quot;语义化&quot;&gt;&lt;a href=&quot;#语义化&quot; class=&quot;headerlink&quot; title=&quot;语义化&quot;&gt;&lt;/a&gt;语义化&lt;/h4&gt;&lt;ol&gt;
+&lt;li&gt;去除或丢失样式的时候能让页面呈现清晰的结构&lt;/li&gt;
+&lt;li&gt;有利于SEO: 有利于爬虫爬取更多的有效信息,爬虫依赖于标签来确定上下文和关键字的权重&lt;/li&gt;
+&lt;li&gt;方便其他设备解析(屏幕阅读器, 盲人阅读器, 移动设备), 有利于无障碍阅读(通常因为这些设备对css的支持较弱)&lt;/li&gt;
+&lt;li&gt;方便团队开发维护代码, 语义化更具有可读性, 遵循W3C标砖, 减少差异化&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;阻止兼容模式&lt;/p&gt;
+&lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge&quot;&gt;
     
     </summary>
     
+    
+      <category term="FE" scheme="http://code.mrwaite.cn/tags/FE/"/>
     
   </entry>
   
