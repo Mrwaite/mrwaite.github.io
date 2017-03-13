@@ -2,7 +2,7 @@
 <h4 id="流程图"><a href="#流程图" class="headerlink" title="流程图"></a>流程图</h4><p><img src="http://img.debugrun.com/pic/2017/2/26/4d26a13f513d36400c21ff794aa3bf8d.jpg" alt="流程图"></p>
 <h4 id="流程解析"><a href="#流程解析" class="headerlink" title="流程解析"></a>流程解析</h4><p>依据上面这张数据双向绑定的流程图,具体的从开始创建开始的流程是:</p>
 <ol>
-<li>new MVVM()<br><img src="http://ojr16of5n.bkt.clouddn.com/vue-bind1.png" alt="img1"></li>
+<li>new MVVM()<br><img src="http://ojr16of5n.bkt.clouddn.com/vue-bind1.png" alt="img1"><a id="more"></a></li>
 <li>Observer(),里面做了,劫持了vm.data所有属性的输入和输出(set和get),并为其每一个单独创建了一个data数据的通知者和data数据的订阅者列表<br><img src="http://ojr16of5n.bkt.clouddn.com/vue-bind2.png" alt="img2"><br>getter: 主要是添加订阅者,维护一个订阅者数组,return val<br>setter: view =&gt; model(输入而改变vm中的data数据), model =&gt; view(dep.notify()去遍历所有的订阅者,update数据,从而改变相关的文本节点数据)<br><img src="http://ojr16of5n.bkt.clouddn.com/vue-bind3.png" alt="img3"></li>
 <li>遍历解析指定id的DOM树(documentFragment的使用, 虚拟DOM)<br>如果其中有v-model的元素节点, 就把vm上相应的data数据赋值给它,并且去除v-model(如果还是input输入框,就监听其keyup,并去触发vm.data的getter)<br><img src="http://ojr16of5n.bkt.clouddn.com/vue-bind4.png" alt="img4"><br>如果是<code>{ { } }</code>这样格式的文本节点,先把对应的值赋上去,然后为这节点创建一个订阅者,并去添加到Observer里面创的vm.data[name]的订阅者列表里面(添加,主要利用<code>watcher.update=&gt;watcher.get=&gt;vm[name]的getter</code>里面去添加).<br><img src="http://ojr16of5n.bkt.clouddn.com/vue-bind5.png" alt="img5"></li>
 <li>如果上面的input输入了,触发了keyup事件<br>会触发vm[name]的setter来让相应的数据双向绑定的也改变, setter上面已有,不做累述</li>
