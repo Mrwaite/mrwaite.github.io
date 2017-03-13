@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://code.mrwaite.cn/"/>
-  <updated>2017-01-20T07:51:51.115Z</updated>
+  <updated>2017-03-13T15:11:26.557Z</updated>
   <id>http://code.mrwaite.cn/</id>
   
   <author>
@@ -14,6 +14,49 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>实现简单的 Vue 数据双向绑定</title>
+    <link href="http://code.mrwaite.cn/2017/03/13/%E7%AE%80%E5%8D%95%E5%AE%9E%E7%8E%B0-Vue-%E6%95%B0%E6%8D%AE%E5%8F%8C%E5%90%91%E7%BB%91%E5%AE%9A/"/>
+    <id>http://code.mrwaite.cn/2017/03/13/简单实现-Vue-数据双向绑定/</id>
+    <published>2017-03-13T14:55:56.000Z</published>
+    <updated>2017-03-13T15:11:26.557Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="实现简单的-vue-数据双向绑定"><a href="#实现简单的-vue-数据双向绑定" class="headerlink" title="实现简单的 vue 数据双向绑定"></a>实现简单的 vue 数据双向绑定</h2><p>参考: <a href="http://www.debugrun.com/a/6QafkCy.html" target="_blank" rel="external">VUE双向绑定的简单实现</a></p>
+<h4 id="流程图"><a href="#流程图" class="headerlink" title="流程图"></a>流程图</h4><p><img src="http://img.debugrun.com/pic/2017/2/26/4d26a13f513d36400c21ff794aa3bf8d.jpg" alt="流程图"></p>
+<h4 id="流程解析"><a href="#流程解析" class="headerlink" title="流程解析"></a>流程解析</h4><p>依据上面这张数据双向绑定的流程图,具体的从开始创建开始的流程是:</p>
+<ol>
+<li>new MVVM()<br><img src="http://ojr16of5n.bkt.clouddn.com/vue-bind1.png" alt="img1"></li>
+<li>Observer(),里面做了,劫持了vm.data所有属性的输入和输出(set和get),并为其每一个单独创建了一个data数据的通知者和data数据的订阅者列表<br><img src="http://ojr16of5n.bkt.clouddn.com/vue-bind2.png" alt="img2"><br>getter: 主要是添加订阅者,维护一个订阅者数组,return val<br>setter: view =&gt; model(输入而改变vm中的data数据), model =&gt; view(dep.notify()去遍历所有的订阅者,update数据,从而改变相关的文本节点数据)<br><img src="http://ojr16of5n.bkt.clouddn.com/vue-bind3.png" alt="img3"></li>
+<li>遍历解析指定id的DOM树(documentFragment的使用, 虚拟DOM)<br>如果其中有v-model的元素节点, 就把vm上相应的data数据赋值给它,并且去除v-model(如果还是input输入框,就监听其keyup,并去触发vm.data的getter)<br><img src="http://ojr16of5n.bkt.clouddn.com/vue-bind4.png" alt="img4"><br>如果是<code>{ { } }</code>这样格式的文本节点,先把对应的值赋上去,然后为这节点创建一个订阅者,并去添加到Observer里面创的vm.data[name]的订阅者列表里面(添加,主要利用<code>watcher.update=&gt;watcher.get=&gt;vm[name]的getter</code>里面去添加).<br><img src="http://ojr16of5n.bkt.clouddn.com/vue-bind5.png" alt="img5"></li>
+<li>如果上面的input输入了,触发了keyup事件<br>会触发vm[name]的setter来让相应的数据双向绑定的也改变, setter上面已有,不做累述</li>
+</ol>
+<p><strong>订阅者</strong> :<br><img src="http://ojr16of5n.bkt.clouddn.com/vue-bind6.png" alt="img6"><br><strong>发布者(通知者)</strong> :<br><img src="http://ojr16of5n.bkt.clouddn.com/vue-bind7.png" alt="img7"></p>
+<p><a href="https://gist.github.com/Mrwaite/1c5bfbaf9daa0d8830fd67d8bc2e8540" target="_blank" rel="external">完整代码</a></p>
+<h4 id="遇到的坑"><a href="#遇到的坑" class="headerlink" title="遇到的坑"></a>遇到的坑</h4><p>其实刚接触的时候比较绕的是其中的 数据劫持 + 订阅者/发布者模式</p>
+<p><strong>while为什么可以循环</strong>:<br>demo :<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">while(child = node.firstChild)&#123;</div><div class="line">    ...</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Node/appendChild" target="_blank" rel="external">Node.appendChild</a><br>如果被插入的节点已经存在于当前文档的文档树中,则那个节点会首先从原先的位置移除,然后再插入到新的位置.</p>
+<p>如果你需要保留这个子节点在原先位置的显示,则你需要先用Node.cloneNode方法复制出一个节点的副本,然后在插入到新位置.</p>
+<p><strong>DocumentFragment</strong><br><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/DocumentFragment" target="_blank" rel="external">DocumentFragment Web API</a><br>用<code>DocumentFragment</code>添加子节点来解决频繁操作DOM的问题，可以理解为中间的一层存在于内存中的虚拟DOM.提高页面的性能.</p>
+<h4 id="疑惑和收获"><a href="#疑惑和收获" class="headerlink" title="疑惑和收获"></a>疑惑和收获</h4><ol>
+<li>用 Dep.target 这个全局的变量保存当前的watcher, 并在添加到订阅者队列之后清空, 总感觉这个实现不太好.</li>
+<li>数据双向绑定中最后更新视图层中,直接是去更新<code>node.value</code>的值来响应,感觉这样的实现和之前使用<code>DocuemntFragment</code>的思维不符啊!感觉也可以用<code>DocumentFragment</code>来实现!</li>
+<li>因为之前接触过函数节流和函数去抖,感觉可以用到<code>keyup</code>事件上.</li>
+</ol>
+<p>感觉创建监听者时候,为每个data中的元素创建一个通知者,这里的闭包实现挺棒的!</p>
+<p>还有就是之前有稍微了解,react的虚拟DOM是把真实的DOM树,转化为用对象表示的数据结构,然后在数据变更的时候用一些diff算法比较两棵虚拟DOM树,从而算出最优的变化操作,最后更新真实DOM树.</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;实现简单的-vue-数据双向绑定&quot;&gt;&lt;a href=&quot;#实现简单的-vue-数据双向绑定&quot; class=&quot;headerlink&quot; title=&quot;实现简单的 vue 数据双向绑定&quot;&gt;&lt;/a&gt;实现简单的 vue 数据双向绑定&lt;/h2&gt;&lt;p&gt;参考: &lt;a href=&quot;h
+    
+    </summary>
+    
+    
+      <category term="Vue" scheme="http://code.mrwaite.cn/tags/Vue/"/>
+    
+  </entry>
   
   <entry>
     <title>寒假前端基础总结</title>
