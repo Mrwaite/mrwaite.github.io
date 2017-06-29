@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://code.mrwaite.cn/"/>
-  <updated>2017-06-29T21:22:49.071Z</updated>
+  <updated>2017-06-29T21:30:59.239Z</updated>
   <id>http://code.mrwaite.cn/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://code.mrwaite.cn/2017/06/30/Task-mictask-queues-and-schedules-%E7%BF%BB%E8%AF%91/"/>
     <id>http://code.mrwaite.cn/2017/06/30/Task-mictask-queues-and-schedules-翻译/</id>
     <published>2017-06-29T21:17:01.000Z</published>
-    <updated>2017-06-29T21:22:49.071Z</updated>
+    <updated>2017-06-29T21:30:59.239Z</updated>
     
     <content type="html"><![CDATA[<p>作者: jake<br>原文链接: <a href="https://jakearchibald.com/2015/tasks-microtasks-queues-and-schedules/" target="_blank" rel="external">https://jakearchibald.com/2015/tasks-microtasks-queues-and-schedules/</a><br>翻译: Mrwaite</p>
 <p>当我告诉我同事 <a href="https://twitter.com/gauntface" target="_blank" rel="external">Matt Gaunt</a> ,我正在考虑写一篇关于 microtask queueing和浏览器 event loop 的执行, 他说他不会去读这篇文章…但,我还是会写,希望大家有所收获!</p>
@@ -92,6 +92,7 @@
 </li>
 </ul>
 <p>所以, 现在有人还在看吗?hello?hello?</p>
+<h4 id="其他参考"><a href="#其他参考" class="headerlink" title="其他参考"></a>其他参考</h4><p><a href="https://github.com/BlackGanglion/My-Reading-List/issues/4" target="_blank" rel="external">JS基础 Promise</a><br><a href="https://stackoverflow.com/questions/25915634/difference-between-microtask-and-macrotask-within-an-event-loop-context" target="_blank" rel="external">Difference between microtask and macrotask within an event loop context</a><br><a href="https://medium.com/sivann-com-tw/%E9%9D%9E%E5%90%8C%E6%AD%A5%E7%A8%8B%E5%BC%8F%E7%A2%BC%E4%B9%8B%E9%9C%A7-node-js-%E7%9A%84%E4%BA%8B%E4%BB%B6%E8%BF%B4%E5%9C%88%E8%88%87-eventemitter-809432976c1b" target="_blank" rel="external">非同步程式碼之霧：Node.js 的事件迴圈與 EventEmitter</a><br><a href="http://www.cnblogs.com/youxin/p/3354924.html" target="_blank" rel="external">javascript线程解释（setTimeout,setInterval你不知道的事）</a></p>
 ]]></content>
     
     <summary type="html">
