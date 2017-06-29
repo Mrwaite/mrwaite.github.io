@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://code.mrwaite.cn/"/>
-  <updated>2017-03-14T06:30:58.713Z</updated>
+  <updated>2017-06-29T21:18:58.975Z</updated>
   <id>http://code.mrwaite.cn/</id>
   
   <author>
@@ -14,6 +14,95 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Task, mictask, queues and schedules(翻译)</title>
+    <link href="http://code.mrwaite.cn/2017/06/30/Task-mictask-queues-and-schedules-%E7%BF%BB%E8%AF%91/"/>
+    <id>http://code.mrwaite.cn/2017/06/30/Task-mictask-queues-and-schedules-翻译/</id>
+    <published>2017-06-29T21:17:01.000Z</published>
+    <updated>2017-06-29T21:18:58.975Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="Task-mictask-queues-and-schedules-翻译"><a href="#Task-mictask-queues-and-schedules-翻译" class="headerlink" title="Task, mictask, queues and schedules(翻译)"></a>Task, mictask, queues and schedules(翻译)</h2><p>作者: jake<br>原文链接: <a href="https://jakearchibald.com/2015/tasks-microtasks-queues-and-schedules/" target="_blank" rel="external">https://jakearchibald.com/2015/tasks-microtasks-queues-and-schedules/</a><br>翻译: Mrwaite</p>
+<p>当我告诉我同事 <a href="https://twitter.com/gauntface" target="_blank" rel="external">Matt Gaunt</a> ,我正在考虑写一篇关于 microtask queueing和浏览器 event loop 的执行, 他说他不会去读这篇文章…但,我还是会写,希望大家有所收获!</p>
+<p>事实上,你首先可以了解 <a href="https://twitter.com/philip_roberts" target="_blank" rel="external">Philip Roberts</a> 在 <a href="https://www.youtube.com/watch?v=8aGhZQkoFbQ" target="_blank" rel="external">JSConf 上关于 event loop的演讲</a> - microtasks 并没有涉及, 除此之外它仍是非常好的介绍.</p>
+<p>先看下面这段 JavaScript :<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">console</span>.log(<span class="string">'script start'</span>);</div><div class="line"></div><div class="line">setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'setTimeout'</span>);</div><div class="line">&#125;, <span class="number">0</span>);</div><div class="line"></div><div class="line"><span class="built_in">Promise</span>.resolve().then(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'promise1'</span>);</div><div class="line">&#125;).then(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'promise2'</span>);</div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(<span class="string">'script end'</span>);</div></pre></td></tr></table></figure></p>
+<p>正确的结果是:<code>script start</code>, <code>script end</code>, <code>promise1</code>, <code>promise2</code>, <code>setTimeout</code>, 但浏览器支持不同还是会有所不同的!</p>
+<p>Microsoft Edge, Firefox 40, iOS Safari 和 desktop Safari8.0.8会在 <code>promise1</code> 和 <code>promise2</code> 之前打印 <code>setTimeout</code>. 怪异的是, Firefox 39 和 Safari 8.0.7 却始终保持正确.</p>
+<h4 id="解释"><a href="#解释" class="headerlink" title="解释"></a>解释</h4><p>为了理解, 首先你需要知道 event loop 是怎么处理 tasks 和 microtasks.这样当你接触这方面问题的时候,脑子里将会有很多思路.深呼吸…</p>
+<p>每个’线程’都会有自己的 event loop ,所以每个 web worker 都会得到自己的, 所以它们可以独立执行, 而所有同源的窗口共享一个 event loop他们可以同步通讯. event loop不断执行任何已排队的 tasks.一个 event loop 有很多的 task 源,并确保该源的执行顺序(例如 indexedDB), 但是浏览器可以在每一轮的循环中挑选哪个源任务去执行.这样允许浏览器优先去执行性能敏感的任务,像是用户输入.ok, stay with me…</p>
+<p>Tasks需要被计划好, 这样浏览器深入到 JavaScript/DOM land, 确保这些 tasks 依次执行.两个 task 之间, 浏览器也许会渲染更新.从鼠标点击到事件回调需要安排一个 task ,解析HTML也是如此,在上面的例子中, <code>setTimeout</code>.</p>
+<p><code>setTimeout</code>等待一个给定的延迟时间, 然后为它的回调安排一个新的 task .这就是为什么<code>setTimeout</code>在<code>script end</code>之前打印, 打印<code>script end</code>是第一个 task 的一部分, <code>setTimeout</code> 是在另一个 task 中打印的.好, 我们大都能理解这个, 但是我需要你坚持看下去…</p>
+<p><code>Microtask</code> 通常是为那些在脚本执行完之后需要直接发生的任务而被安排的, 像是对一批任务做出反应, 或者在没有副作用的新 task 中做一些异步的事.只要没有其他 JavaScript 中间执行, 并且在每个任务结束之后, <code>Microtask</code> 队列将会在回调后执行.任何额外的 microtasks 将会被安排到队列的末尾, 依旧执行. <code>Microtask</code> 包括突发的观察者回调, 像上面的例子 promise 回调.</p>
+<p>一旦 promise 状态保持不变, 它将会为其后面的回调函数在队列中加入一个 microtask. 这样就确保 promise 回调函数是异步的, 甚至 promise 已经变为 不可变状态(rejected or reslove, 就是即使临时加入一个promise回调也是会加入当前microtask的). 所以 <code>.tnen(yey, nay)</code>会立刻排入一个 microtask.  因为在 microtask 执行之前 当前的 running script(就是普通的执行脚本, 普通的script语句)必须执行完毕,所以 <code>promise1</code> 和 <code>promise2</code> 在 <code>script end</code> 之后打印.因为 microtask 总是在下一个 task 之前被执行, 所以 <code>promise1</code> 和 <code>promise2</code> 在 <code>setTimeout</code> 之前打印.</p>
+<p>(当前script就是第一个task, 然后执行第一个microtask也就是<code>promise1</code>和<code>promise2</code>, 之后执行下一个task也就是<code>setTimeout</code>)</p>
+<p>再看看一步一步来是怎么回事:<br><a href="https://jakearchibald.com/2015/tasks-microtasks-queues-and-schedules/#try-it/" target="_blank" rel="external">原文有一个很好的一步一步查看task和microtask的示意图</a></p>
+<p>是的, 我搞了一个动画的分布示意图. 你是怎么度过你的周六的?和你的小伙伴出去溜溜?但是,我不是.若是因我惊人的UI设计中还是不明白, 点击上面的箭头一步一步前进.</p>
+<h4 id="浏览器的兼容性"><a href="#浏览器的兼容性" class="headerlink" title="浏览器的兼容性"></a>浏览器的兼容性</h4><p>有些浏览器打印出来的结果是 <code>script start</code>, <code>script end</code>, <code>setTimeout</code>, <code>promise1</code>, <code>promise2</code>. 他们是在 <code>setTimeout</code>之后执行 promise 的.这就像是他们把 promise 回调当做是新的 task 的一部分,而不是作为一个 microtask.</p>
+<p>这也是有点情有可原的, promises 是来自 ECMAScript 而不是 HTML的. ECMAScript有’jobs’这个概念, 和microtask有点类似,但是他们的关系是不明确的,就像<a href="https://esdiscuss.org/topic/the-initialization-steps-for-web-browsers#content-16" target="_blank" rel="external">ES DISCUSS中争论的那样</a>, 然而普遍的共识是 promises 应该属于 microtask queue 中的一部分, 并有很好的解释.</p>
+<p>把 promises 作为 tasks 对待会导致性能问题, 回调将会因为像渲染这样的任务相关的东西导致不必要的延迟执行.它还会因为其他任务源的影响而导致不确定性.</p>
+<p>这里有个<a href="https://connect.microsoft.com/IE/feedback/details/1658365" target="_blank" rel="external">Promise callbacks don’t run as microtasksEdge</a> 的 Edge 反馈, WebKit 连夜修正了, 所以我保证 Safari 最终也会修正, 它可能会在 FireFox 46 修复.</p>
+<p>非常有意思的是, 自从被修复, Safari 和 FireFox 都遭遇了一次回退, 我想这应该是一个巧合.</p>
+<h4 id="怎么去判断使用是-tasks-还是-microtask"><a href="#怎么去判断使用是-tasks-还是-microtask" class="headerlink" title="怎么去判断使用是 tasks 还是 microtask"></a>怎么去判断使用是 tasks 还是 microtask</h4><p>测试是一个方法, 看log何时打印出来.</p>
+<p>正确的方式是查看规范, 例如, <a href="https://html.spec.whatwg.org/multipage/webappapis.html#timer-initialisation-steps" target="_blank" rel="external">setTimeout 的第14步</a>中有关于如何对一个 task 进行排列, 而 <a href="https://dom.spec.whatwg.org/#queue-a-mutation-record" target="_blank" rel="external">queuing a mutation record 的 第5步</a> 是如何对 microtask 进行排列.</p>
+<p>顺便提到, 在 ECMAScript 中, 他们称 microtask 为 ‘jobs’. 在 <a href="http://www.ecma-international.org/ecma-262/6.0/#sec-performpromisethen" target="_blank" rel="external"> step 8.a of PerformPromiseThen</a>, <code>EnqueueJob</code> 被称为 <code>排列 microtask</code>.</p>
+<p>现在, 让我看看更多的复杂的例子.</p>
+<h4 id="Level-1-Boss战"><a href="#Level-1-Boss战" class="headerlink" title="Level 1 Boss战"></a>Level 1 Boss战</h4><p>在写这篇文章之前, 我已经犯过错了. 这里是一段 html:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;div class=&quot;outer&quot;&gt;</div><div class="line">  &lt;div class=&quot;inner&quot;&gt;&lt;/div&gt;</div><div class="line">&lt;/div&gt;</div></pre></td></tr></table></figure></p>
+<p>给它加上下面的 JS, 如果我点击 <code>div.inner</code> 会打印什么?<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// Let's get hold of those elements</span></div><div class="line"><span class="keyword">var</span> outer = <span class="built_in">document</span>.querySelector(<span class="string">'.outer'</span>);</div><div class="line"><span class="keyword">var</span> inner = <span class="built_in">document</span>.querySelector(<span class="string">'.inner'</span>);</div><div class="line"></div><div class="line"><span class="comment">// Let's listen for attribute changes on the</span></div><div class="line"><span class="comment">// outer element</span></div><div class="line"><span class="keyword">new</span> MutationObserver(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'mutate'</span>);</div><div class="line">&#125;).observe(outer, &#123;</div><div class="line">  attributes: <span class="literal">true</span></div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="comment">// Here's a click listener…</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">onClick</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'click'</span>);</div><div class="line"></div><div class="line">  setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'timeout'</span>);</div><div class="line">  &#125;, <span class="number">0</span>);</div><div class="line"></div><div class="line">  <span class="built_in">Promise</span>.resolve().then(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'promise'</span>);</div><div class="line">  &#125;);</div><div class="line"></div><div class="line">  outer.setAttribute(<span class="string">'data-random'</span>, <span class="built_in">Math</span>.random());</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// …which we'll attach to both elements</span></div><div class="line">inner.addEventListener(<span class="string">'click'</span>, onClick);</div><div class="line">outer.addEventListener(<span class="string">'click'</span>, onClick);</div></pre></td></tr></table></figure></p>
+<p>在偷看答案之前自己运行一遍, 提示: 不止打印一次.</p>
+<h4 id="验证"><a href="#验证" class="headerlink" title="验证"></a>验证</h4><p>点击里面的块, 触发点击事件:<br><a href="https://jakearchibald.com/2015/tasks-microtasks-queues-and-schedules/" target="_blank" rel="external">原文章有一个可操作的小demo</a></p>
+<p>和你猜的一样吗? 如果是, 你或许是正确的. 不幸的是, 不同浏览器会不太一致:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">Chrome: click  |promise | mutate | click | promise | mutate | timeout | timeout</div><div class="line"></div><div class="line">FireFox: click | mutate | click | mutate | timeout | promise | promise | timeout</div><div class="line"></div><div class="line">Safari: | click | mutate | clic | mutate| promise | promise | timeout| timeout</div><div class="line"></div><div class="line">IE:|click|click|mutate|timeout|promise|timeout|promise</div></pre></td></tr></table></figure></p>
+<h4 id="谁是正确的"><a href="#谁是正确的" class="headerlink" title="谁是正确的?"></a>谁是正确的?</h4><p>调度 ‘click’ 事件的是一个 task. <code>Mutation observer</code> 和 <code>promise callbacks</code> 是属于 microtask的. <code>setTimeout</code> 回调是作为一个task的.所以这里就是它们是如何运行的:</p>
+<p><a href="https://jakearchibald.com/2015/tasks-microtasks-queues-and-schedules/" target="_blank" rel="external">查看原文章demo</a></p>
+<p>如果是 Chrome , 它将会这样运行.其中对我来说新奇的是 microtask 是在 callbacks 之后处理的(只要没有其他的 JavaScript 中间执行).我认为它会被 <code>end-of-task</code> 限制.这个规则是来自 HTML 中的调用回调的规范:</p>
+<blockquote>
+<p>如果<a href="https://html.spec.whatwg.org/multipage/webappapis.html#stack-of-script-settings-objects" target="_blank" rel="external">脚本设置的对象栈</a>是空的, 就<a href="https://html.spec.whatwg.org/multipage/webappapis.html#perform-a-microtask-checkpoint" target="_blank" rel="external">执行一次 microtask 检查</a><br>– <a href="https://html.spec.whatwg.org/multipage/webappapis.html#clean-up-after-running-a-callback" target="_blank" rel="external">HTML: 回调之后的清理 步骤3</a></p>
+</blockquote>
+<p>microtask 检查点将会遍及整个 microtask 队列, 直到处理了整个 microtask 队列. 相似的是, ECMAScript 是这么描述 <code>jobs</code> 的:</p>
+<blockquote>
+<p>只有在 没有正在运行的上下文 和 执行上下文栈是空的 这样的情况下, 才回去执行 <code>job</code>.<br>– <a href="http://www.ecma-international.org/ecma-262/6.0/#sec-jobs-and-job-queues" target="_blank" rel="external">ECMAScript: Job and Job queues</a></p>
+</blockquote>
+<p>虽然在 HTML 上下文中 <code>can be</code> 会变成 <code>must be</code>~~~</p>
+<h4 id="浏览器出错了"><a href="#浏览器出错了" class="headerlink" title="浏览器出错了?"></a>浏览器出错了?</h4><p><code>FireFox</code> 和 <code>Safari</code> 是在 click 监听者之间耗尽了 microtask 队列, 就像 mutation 回调所示, 但是 promises 似乎不太一样. 情有可原的是关联 <code>jobs</code> 和 <code>microtasks</code>是模糊的, 但我还是希望它们在监听者回调中调用.<a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1193394" target="_blank" rel="external">Firefox ticket</a>. <a href="https://bugs.webkit.org/show_bug.cgi?id=147933" target="_blank" rel="external">Safari ticket</a>.</p>
+<p>至于 Edge 我们已经看到排列 promise 是正确的,但是它在click 监听者之间处理 microtask 还是失败的, 取而代之的是会在所有监听者之后处理.这就能解释 <code>mutate</code> 会在所有 <code>click</code> 之后打印.<a href="https://connect.microsoft.com/IE/feedbackdetail/view/1658386/microtasks-queues-should-be-processed-following-event-listeners" target="_blank" rel="external">Bug ticket</a></p>
+<h4 id="Level-1-boss暴躁的老大哥"><a href="#Level-1-boss暴躁的老大哥" class="headerlink" title="Level 1 boss暴躁的老大哥"></a>Level 1 boss暴躁的老大哥</h4><p>使用上面例子, 如果我们执行 <code>inner.click()</code> 会怎么样?</p>
+<p>它将会像前面一样开始时间调度, 但是使用的是 script 而不是 真正的交互.</p>
+<h4 id="try-it"><a href="#try-it" class="headerlink" title="try it"></a>try it</h4><p><a href="https://jakearchibald.com/2015/tasks-microtasks-queues-and-schedules/" target="_blank" rel="external">原文demo</a></p>
+<p>浏览器的执行结果是:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">chrome: click | click | promise | mutate | promise | timeout | timeout</div><div class="line">FireFox: click | click | mutate | timeout | promise | promise | timeout</div><div class="line">Safari: click | click | mutate | promise | promise | timeout | timeout</div><div class="line">IE: click | click | mutate | timeout | promise | timeout | promise</div></pre></td></tr></table></figure></p>
+<p>我发誓在 chrome 上还是会显示不同的结果, 如果你在chrome中得到不同的结果, 欢迎在评论中告诉我其版本号.</p>
+<h4 id="为什么会不同"><a href="#为什么会不同" class="headerlink" title="为什么会不同"></a>为什么会不同</h4><p>这就是它如何执行的:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// Let's get hold of those elements</span></div><div class="line"><span class="keyword">var</span> outer = <span class="built_in">document</span>.querySelector(<span class="string">'.outer'</span>);</div><div class="line"><span class="keyword">var</span> inner = <span class="built_in">document</span>.querySelector(<span class="string">'.inner'</span>);</div><div class="line"></div><div class="line"><span class="comment">// Let's listen for attribute changes on the</span></div><div class="line"><span class="comment">// outer element</span></div><div class="line"><span class="keyword">new</span> MutationObserver(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'mutate'</span>);</div><div class="line">&#125;).observe(outer, &#123;</div><div class="line">  attributes: <span class="literal">true</span></div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<p><a href="https://jakearchibald.com/2015/tasks-microtasks-queues-and-schedules/" target="_blank" rel="external">原文demo</a></p>
+<p>所以正确的是: click, click, promise, mutate, promise, timeout, timeout, chrome 上好像是正确的.</p>
+<p>当所有的 监听者 回调都被调用之后…</p>
+<blockquote>
+<p>如果<a href="https://html.spec.whatwg.org/multipage/webappapis.html#stack-of-script-settings-objects" target="_blank" rel="external">脚本设置的对象栈</a>是空的, 就<a href="https://html.spec.whatwg.org/multipage/webappapis.html#perform-a-microtask-checkpoint" target="_blank" rel="external">执行一次 microtask 检查</a><br>– <a href="https://html.spec.whatwg.org/multipage/webappapis.html#clean-up-after-running-a-callback" target="_blank" rel="external">HTML: 回调之后的清理 步骤3</a></p>
+</blockquote>
+<p>原先, 这表明 microtask 是在 监听者回调之间 运行的, 但是 <code>.click()</code>导致事件同步调用, 所以在回调中 调用<code>.click()的script</code>依旧在栈中的. 以上的规则确保 microtask 不会中断 中间执行的 JavaScript.这意味着我们在监听者回调中是不会处理 microtask 的, 他们会在所有的监听者时候被处理.</p>
+<h4 id="这有什么关系吗"><a href="#这有什么关系吗" class="headerlink" title="这有什么关系吗?"></a>这有什么关系吗?</h4><p>好吧, 这还是讲的比较晦涩.我在尝试为 <a href="https://github.com/jakearchibald/indexeddb-promised/blob/master/lib/idb.js" target="_blank" rel="external"><code>indexedDB</code> 创建一个简单的包装库过程中</a>, 使用了 promise 而不是 <code>IDBRequest</code> 对象, 遇到了这个问题.这使IDB很有趣的被使用.</p>
+<p>当 IDB 触发了一个成功的事件, <a href="http://w3c.github.io/IndexedDB/#fire-a-success-event" target="_blank" rel="external">涉及到交易的对象在调度完之后就变成停滞状态</a>(步骤4),如果我创建一个 promise 会在 当事件 fire 时变为 resolve 状态, 当交易还是活跃的时候该回调应该在步骤4之前运行, 但是除了chrome在其他浏览器上预期的并未发生.</p>
+<p>你可以在FireFox上试试触发这个问题, 因为像 <a href="https://github.com/jakearchibald/es6-promise" target="_blank" rel="external">es6-promise</a> 使用 <code>mutation observer</code> 作为回调, es6 polyfills使用的是 microtask. Safari好像因为其 fix 也会有些问题, 这就是他们的 <a href="http://www.raymondcamden.com/2014/09/25/IndexedDB-on-iOS-8-Broken-Bad" target="_blank" rel="external"> broken implementation of IDB</a>,不幸的是, 在 IE/<br>IE/Edge 上有些东西会反复的失败, 像是在回调之后 <code>mutation 事件</code> 并未被执行.</p>
+<p>但愿我们将会在不久之后见到他们之间的一些互通性.</p>
+<h4 id="你做到了"><a href="#你做到了" class="headerlink" title="你做到了!"></a>你做到了!</h4><p>总结:</p>
+<ul>
+<li>Task会顺序执行, 浏览器可能会在他们之间 发生渲染.</li>
+<li>Microtask也是顺序执行, 他们会在下面两种情况下被执行:<ul>
+<li>在每一个回调之后, 只要没有其他的中间执行的javascript</li>
+<li>在每一个 task 结束之后<br>但愿你现在可以理解事件循环.</li>
+</ul>
+</li>
+</ul>
+<p>所以, 现在有人还在看吗?hello?hello&gt;</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;Task-mictask-queues-and-schedules-翻译&quot;&gt;&lt;a href=&quot;#Task-mictask-queues-and-schedules-翻译&quot; class=&quot;headerlink&quot; title=&quot;Task, mictask, queue
+    
+    </summary>
+    
+    
+      <category term="microtask" scheme="http://code.mrwaite.cn/tags/microtask/"/>
+    
+  </entry>
   
   <entry>
     <title>实现简单的 Vue 数据双向绑定</title>
